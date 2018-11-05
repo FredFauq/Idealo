@@ -1,0 +1,137 @@
+body {
+    padding-top: 70px;
+    background-image: url('../img/Nature-Detail-T.jpg');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}
+h1 {
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+p {
+    font-size: .75em;
+    padding: 0;
+    
+}
+.modal-content {
+    background-color: #9BE69A;
+}
+.navbar {
+    background-color: #4bcc67;
+}
+.carousel-control-prev, .carousel-control-next {
+    color: black !important;
+}
+.card:hover img {
+    transition: all .2s ease-in-out;
+    transform: scale(.95); /* CSS3 */
+    -moz-transform: scale(.95); /* Firefox */
+    -webkit-transform: scale(.95); /* Webkit */
+    -o-transform: scale(.95); /* Opera */
+    -ms-transform: scale(.95); /* IE 9 */
+}
+.card:hover .productPrice {
+    transition: all .2s ease-in-out;
+    transform: scale(1.1); /* CSS3 */
+    -moz-transform: scale(1.1); /* Firefox */
+    -webkit-transform: scale(1.1); /* Webkit */
+    -o-transform: scale(1.1); /* Opera */
+    -ms-transform: scale(1.1); /* IE 9 */
+}
+i:hover {
+   transition: all .2s ease-in-out;
+    transform: scale(1.15); /* CSS3 */
+    -moz-transform: scale(1.15); /* Firefox */
+    -webkit-transform: scale(1.15); /* Webkit */
+    -o-transform: scale(1.15); /* Opera */
+    -ms-transform: scale(1.15); /* IE 9 */ 
+}
+.productPrice {
+    font-size: 1em;
+}
+.basePrice {
+    font-size: 0.8em;
+}
+#networks {
+    background-color: #4bcc67;
+    width: 100%;
+}
+footer {
+    background-color: #28A745;
+}
+footer, a {
+    color: #212529;
+}
+a:hover {
+    color: black;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1); /* CSS3 */
+    -moz-transform: scale(1.1); /* Firefox */
+    -webkit-transform: scale(1.1); /* Webkit */
+    -o-transform: scale(1.1); /* Opera */
+    -ms-transform: scale(1.1); /* IE 9 */ 
+}
+.dropdown-menu {
+    background-color: #4bcc67;    
+}
+@media (min-width: 768px) {
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item {
+        display: block;
+    }
+
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+        transition: none;
+    }
+
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -33.3333%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    /* farthest right hidden item must be absolute position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
