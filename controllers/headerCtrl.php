@@ -6,7 +6,6 @@ if (isset($_GET['action'])) {
         //destruction de la session
         session_destroy();
         //redirection de la page vers l'index
-        header('location:../index.php');
+        header('location:index.php');
     }
 }
-include_once '../lang/FR_FR.php';

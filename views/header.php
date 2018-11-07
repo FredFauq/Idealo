@@ -1,7 +1,8 @@
 <?php
 session_start();
-include_once '../configuration.php';
-include_once '../controllers/headerCtrl.php';
+include_once 'configuration.php';
+include_once 'lang/FR_FR.php';
+include_once 'controllers/headerCtrl.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,6 +14,9 @@ include_once '../controllers/headerCtrl.php';
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+        <script src="../assets/js/script.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
         <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet"> 
         <!-- My custom styles -->
@@ -46,9 +50,9 @@ include_once '../controllers/headerCtrl.php';
                             <a class="dropdown-item" href="#">Table</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
-                            <a class = "nav-link" href="views/connexion.php"><?= NAV_CONNECT ?></a>
+                            <a class = "nav-link" href="../views/register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
                         <?php } else { ?>
                             <a class = "nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><?= sprintf(NAV_WELCOME,$_SESSION['firstname'])  ?></a>  
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,7 +62,7 @@ include_once '../controllers/headerCtrl.php';
                         ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="views/connexion.php"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+                        <a class="nav-link" href="../views/login.php"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
                     </li>
                 </ul>
                 <form class="form-inline">

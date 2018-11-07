@@ -13,6 +13,30 @@ p {
     padding: 0;
     
 }
+.container-fluid{
+    padding-top: 0px;
+    height: 100%;
+    width:auto;
+
+}
+#formBox{
+    padding-top: 15px;
+    padding-bottom: 40px;
+    border: 1px solid black;
+    background-color: #9BE69A;
+    border-radius: 5px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+label{
+    color: #212529;
+    font-weight: bold;
+}
+.form-control{
+     border:1px solid Black;
+     background-color: #e5e0e0;
+}
 .modal-content {
     background-color: #9BE69A;
 }

@@ -7,7 +7,7 @@ Aloe vera, aloe ferox, curcuma, gingembre, açaï... certifiés biologique
 La plus haute qualité biologique depuis 2007</h1>
       <div id="myCarousel" class="carousel slide" data-ride="carousel" data-wrap="true">
     <div class="carousel-inner row w-100 mx-auto">
-      <div class="carousel-item col-md-4 active">
+      <div class="carousel-item col-md-3 active">
         <div class="card text-center">
           <img class="card-img-top img-fluid" src="assets/img/aloe-vera_800x600.jpg" alt="ALoe Vera">
           <div class="card-body">

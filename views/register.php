@@ -1,5 +1,6 @@
 <?php
-include_once 'header.php';
+include_once '../configuration.php';
+include_once '../views/header.php';
 include_once '../controllers/registerCtrl.php';
 ?>
 <div class="container-fluid">
@@ -17,11 +18,23 @@ include_once '../controllers/registerCtrl.php';
                 </div>
                 <div class="form-group has-error">
                     <label for="birthdate"><?= REGISTER_BIRTHDATE ?></label>
-                    <input type="text" name="birthdate" id="birthdate"/>
+                    <input type="date" name="birthdate" id="birthdate"/>
                 </div>
                 <div class="form-group has-error">
                     <label for="address"><?= REGISTER_ADDRESS ?></label>
                     <input type="text" name="address" id="address"/>
+                </div>
+                <div class="form-group has-error">
+                    <label for="zipcode"><?= REGISTER_ZIPCODE ?></label>
+                    <input type="text" name="zipcode" id="zipcode"/>
+                </div>
+                <div class="form-group has-error">
+                    <label for="city"><?= REGISTER_CITY ?></label>
+                    <input type="text" name="city" id="city"/>
+                </div>
+                <div class="form-group has-error">
+                    <label for="country"><?= REGISTER_COUNTRY ?></label>
+                    <input type="text" name="country" id="country"/>
                 </div>
                 <div class="form-group has-error">
                     <label for="mail"><?= REGISTER_MAIL ?></label>
@@ -33,7 +46,7 @@ include_once '../controllers/registerCtrl.php';
                 </div>
                 <div class="form-group has-error">
                     <label for="login" class="control-label"><?= REGISTER_LOGIN ?></label>
-                    <input type="text" name="login" id="login" class="form-control"/>
+                    <input type="text" name="login" id="login"/>
                 </div>
                 <div class="form-group has-error">
                     <label for="password"><?= REGISTER_PASSWORD ?></label>

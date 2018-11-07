@@ -3,7 +3,7 @@
             <div style="background-color: #6351ce;">
                 <div class="container-fluid" id="networks">
                     <!-- Grid row-->
-                    <div class="row py-4 d-flex align-items-center" >
+                    <div class="row py-3 d-flex align-items-center" >
                         <!-- Grid column -->
                         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                             <h6 class="mb-0">Rejoignez-nous sur les réseaux !</h6>
@@ -133,13 +133,13 @@ Le défaut de paiement de l'une des échéances peut entraîner la revendication
         <!-- Footer -->
         <!-- SCRIPTS -->
         <!-- JQuery -->
-        <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
         <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="assets/js/popper.min.js"></script>
+        <script type="text/javascript" src="../assets/js/popper.min.js"></script>
         <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
         
-        <script type="text/javascript" src="assets/js/script.js"</script>
+        <script type="text/javascript" src="../assets/js/script.js"</script>
     </body>
 </html>
 
