@@ -72,28 +72,6 @@ class users extends database {
         }
         return $state;
     }
-    
-    /**
-     * Méthode pour ajouter un utilisateur
-     * @return type
-     */
-    public function addUser() {
-        $query = 'INSERT INTO `gleola1_users`(`lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `phone`, `mail`, `login`, `password`) ' 
-                . 'VALUES (:lastname, :firstname, :birthdate, :address, :zipcode, :city, :country, :phone, :mail, :login, :password)';
-        $insertUser = $this->db->prepare($query);
-        $insertUser->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
-        $insertUser->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-        $insertUser->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
-        $insertUser->bindValue(':address', $this->address, PDO::PARAM_STR);
-        $insertUser->bindValue(':zipcode', $this->zipcode, PDO::PARAM_STR);
-        $insertUser->bindValue(':city', $this->city, PDO::PARAM_STR);
-        $insertUser->bindValue(':country', $this->country, PDO::PARAM_STR);
-        $insertUser->bindValue(':phone', $this->phone, PDO::PARAM_STR);
-        $insertUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $insertUser->bindValue(':login', $this->login, PDO::PARAM_STR);
-        $insertUser->bindValue(':password', $this->password, PDO::PARAM_STR);
-        return $insertUser->execute();
-    }
     /**
      * Méthode pour recupérer la liste des utilisateurs
      * @return type

@@ -1,7 +1,7 @@
 <?php
-include_once '../configuration.php';
-include_once '../views/header.php';
-include_once '../controllers/registerCtrl.php';
+include_once 'header.php';
+include_once 'class/database.php';
+include_once 'controllers/registerCtrl.php';
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -55,7 +55,7 @@ include_once '../controllers/registerCtrl.php';
                     <label for="passwordVerify"><?= REGISTER_PASSWORD_VERIFY ?></label>
                     <input type="password" name="passwordVerify" id="passwordVerify"/></div>
                 <div class="form-group has-error">
-                    <input type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>" />
+                    <input type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
                 </div>
             </form>
         </div>

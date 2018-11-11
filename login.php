@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
-include_once '../controllers/loginCtrl.php';
+include_once 'class/database.php';
+include_once 'controllers/loginCtrl.php';
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -9,11 +10,11 @@ include_once '../controllers/loginCtrl.php';
             <form action="#" method="POST">
                 <div class="form-group">
                 <label for="login"><?= FORM_LOGIN ?></label>
-                <input type="text" name="login" id="login required" />
+                <input type="text" name="login" id="login" />
                 </div>
                 <div class="form-group">
                 <label for="password"><?= FORM_PASSWORD ?></label>
-                <input type="password" name="password" id="password required" />
+                <input type="password" name="password" id="password" />
                 </div>
                 <div class="form-group">
                 <input type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
@@ -28,4 +29,4 @@ include_once '../controllers/loginCtrl.php';
         </div>
     </div>
 </div>
-<?php include_once '../views/footer.php'; ?>
+<?php include_once 'footer.php'; ?>

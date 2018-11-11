@@ -52,7 +52,7 @@ include_once 'controllers/headerCtrl.php';
                     </li>
                     <li class="nav-item">
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
-                            <a class = "nav-link" href="../views/register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
+                            <a class = "nav-link" href="register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
                         <?php } else { ?>
                             <a class = "nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><?= sprintf(NAV_WELCOME,$_SESSION['firstname'])  ?></a>  
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,7 +62,7 @@ include_once 'controllers/headerCtrl.php';
                         ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../views/login.php"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+                        <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
                     </li>
                 </ul>
                 <form class="form-inline">
@@ -76,7 +76,6 @@ include_once 'controllers/headerCtrl.php';
                     </div>
                 </form>
                 <!-- Right -->
-
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
                         <a class="nav-link waves-effect">
