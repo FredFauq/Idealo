@@ -1,6 +1,6 @@
 <?php
 // Définition des informations de connexion à la base de données
-define('HOST', '127.0.1.1');
+define('HOST', '127.0.0.1');
 define('LOGIN', 'Fred');
 define('PASSWORD', '200469');
 define('DBNAME', 'Idealoe');

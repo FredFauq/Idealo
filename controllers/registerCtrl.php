@@ -1,5 +1,5 @@
 <?php
-
+// on initialise les variables
 $lastname = '';
 $firstname = '';
 $birthdate = '';
@@ -15,15 +15,23 @@ $passwordVerify = '';
 $errorList = array();
 
 //Appel AJAX
+// on vérifie la concordance du login
 if (isset($_POST['loginVerify'])) {
     include_once '../configuration.php';
+    // on instancie la classe users dans une variable
     $user = new users();
+    // on passe la valeur et sécurise par htmlspecialchars l'entrée du champ saisi
     $user->login = htmlspecialchars($_POST['loginVerify']);
+    // 
     echo $user->checkIfUserExist();
-} else { //Validation du formulaire
+} else { 
+//Validation du formulaire
+    // on vérifie que la saisie existe et n'est pas vide
     if (!empty($_POST['lastname'])) {
+        // on sécurise par htmlspecialchars
         $lastname = htmlspecialchars($_POST['lastname']);
     } else {
+        // sinon on affiche une erreur
         $errorList['lastname'] = ERROR_LASTNAME;
     }
 
@@ -86,10 +94,11 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['password'] = ERROR_PASSWORD;
     }
-
-
+    // S'il n'y a pas d'erreur
     if (count($errorList) == 0) {
+        // on instancie la classe users
         $user = new users();
+        // on hydrate les valeurs
         $user->lastname = $lastname;
         $user->firstname = $firstname;
         $user->birthdate = $birthdate;
@@ -101,6 +110,7 @@ if (isset($_POST['loginVerify'])) {
         $user->phone = $phone;
         $user->login = $login;
         $user->password = $password;
-        $user->registerUser();
+        // on éxécute la méthode registerUser
+        $user->registerUser();  
     }
 }

@@ -17,35 +17,15 @@ class users extends database {
         parent::__construct();
         $this->dbConnect();
     }
-    
-    /**
-     * Méthode permettant de faire la connexion de l'utilisateur
-     * @return boolean
-     */
-    public function userConnection() {
-        $state = false;
-        $query = 'SELECT `id`, `login`, `password` FROM `gleola1_users` WHERE `login` = :login';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':login', $this->login, PDO::PARAM_STR);
-        if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
-            $selectResult = $result->fetch(PDO::FETCH_OBJ);
-            if (is_object($selectResult)) { //On vérifie que l'on a bien trouvé un utilisateur
-                // On hydrate
-                $this->login = $selectResult->login;
-                $this->password = $selectResult->password;
-                $this->id = $selectResult->id;
-                $state = true;
-            }
-        }
-        return $state;
-    }
     /**
      * Méthode permettant l'enregistrement d'un utilisateur
      * @return boolean
      */
     public function registerUser() {
+        // requête d'insertion des valeurs de l'enregistrement
         $query = 'INSERT INTO `gleola1_users` (`lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone`, `login`, `password`, `idRole`) '
                 . 'VALUES (:lastname, :firstname, :birthdate, :address, :zipcode, :city, :country, :mail, :phone, :login, :password, 1)';
+        // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($query);
         $result->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
         $result->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -58,15 +38,50 @@ class users extends database {
         $result->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $result->bindValue(':login', $this->login, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);
+        // On exécute la requête.
         return $result->execute();
     }
-
+    
+    /**
+     * Méthode permettant de faire la connexion de l'utilisateur
+     * @return boolean
+     */
+    public function userConnection() {
+       
+        // requête de récupération du login et du password par un select
+        $query = 'SELECT `id`, `login`, `password` FROM `gleola1_users` WHERE `login` = :login';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':login', $this->login, PDO::PARAM_STR);
+        // On vérifie que la requête s'est bien exécutée
+        if ($result->execute()) {
+            $selectResult = $result->fetch(PDO::FETCH_OBJ);
+            // On vérifie que l'on a bien trouvé un utilisateur
+            if (is_object($selectResult)) { 
+                // On hydrate
+                $this->login = $selectResult->login;
+                $this->password = $selectResult->password;
+                $this->id = $selectResult->id;
+                $state = true;
+            }
+            else {
+                 $state = false;
+            }
+        }
+        return $state;
+    }
+/**
+ * Méthode permettant de vérifier l'existence de l'utilisateur
+ * @return type boolean
+ */
     public function checkIfUserExist(){
         $state = false;
+        // requête de vérification de la présence du login par count
         $query = 'SELECT COUNT(`id`) AS `count` FROM `gleola1_users` WHERE `login` = :login';
         $result = $this->db->prepare($query);
         $result->bindValue(':login', $this->login, PDO::PARAM_STR);
+        // On vérifie que la requête s'est bien exécutée
         if ($result->execute()) {
+            // on récupère le réxultat par un fetch
             $selectResult = $result->fetch(PDO::FETCH_OBJ);
             $state = $selectResult->count;
         }
@@ -82,8 +97,8 @@ class users extends database {
         $query = 'SELECT `id`, `lastname`, `firstname` FROM `gleola1_users` LIMIT 10';
                $userList=$this->db->query($query);
          // si il y a une erreur on renvoie le tableau vide
-        if(is_object($patientList)){
-            $getUserList=$UserList->fetchAll(PDO::FETCH_OBJ);
+        if(is_object($userList)){
+            $getUserList=$userList->fetchAll(PDO::FETCH_OBJ);
         }
         // on renvoie le résultat
         return $getUserList;
@@ -118,7 +133,7 @@ class users extends database {
                    . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail '  
                    . 'WHERE `id` = :id';
            $updateUser = $this->db->prepare($queryUpdateUser);
-           // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
+           // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
            $updateUser->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
            $updateUser->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
            $updateUser->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
@@ -184,10 +199,11 @@ class users extends database {
         return $result;
     }
      /**
-     * Méthode pour afficher une liste d'utilisateur avec pagination par N
+     * Méthode pour afficher une liste d'utilisateur avec pagination par N utilisateurs
      * @return type
      */
-    public function getUsersListByFive($limit, $offset) {
+    public function getUsersListByN($limit, $offset) {
+    // initialisation du tableau $result
     $result = array();
     $queryRresult = $this->db->prepare('SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `phone`, `mail` '
             . 'FROM `gleola1_users` '

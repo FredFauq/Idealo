@@ -25,7 +25,7 @@ $(document).ready(function() {
 });
 $(function () {
     $('#login').blur(function () {
-        $.post('controllers/registerCtrl.php', { loginVerify:$(this).val() } , function (data) {
+        $.post('controllers/loginCtrl.php', { loginVerify:$(this).val() } , function (data) {
             if(data == 1){
                 $('#login').addClass('bg-danger');
                 $('#register').hide();
