@@ -1,10 +1,10 @@
 <?php
-// inclusion du header
-include_once 'header.php';
-// inclusion de la classe database
-include_once 'class/database.php';
-// inclusion du contrôleur
+// inclusion du fichier configuration
+include_once 'configuration.php';
+// ajout du contrôleur
 include_once 'controllers/loginCtrl.php';
+// ajout du header
+include_once 'header.php';
 ?>
 <!-- formulaire de connexion début -->
 <div class="container-fluid">
@@ -15,28 +15,46 @@ include_once 'controllers/loginCtrl.php';
                 <div class="form-group">
                     <label for="login"></label>
                     <div class="input-group-prepend">
-                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                         <input type="text" name="login" class="form-control" id="login" placeholder="<?= FORM_LOGIN ?>" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password"></label>
                     <div class="input-group-prepend">
-                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         <input type="password" name="password" class="form-control" id="password" placeholder="<?= FORM_PASSWORD ?>" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <input class="btn btn-success" type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
+                    <a class="btn btn-success" type="text" href="index.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
                 </div>
             </form>
             <?php if ($message != '') { ?>
-                <p><?= $message ?> </p>
+                <h3><?= $message ?></h3>
             <?php } ?>
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+    $('#loginSubmit').blur(function () {
+        $.post('controllers/loginCtrl.php', { loginVerify:$(this).val() } , function (data) {
+            if(data == 1){
+                $('#loginSubmit').show();
+                $('#loginOut').hide();
+            }else{ 
+                $('#loginSubmit').hide();
+                $('#loginOut').show();
+            }
+        },
+        'JSON');
+    });
+});
+</script>
 <!-- formulaire de connexion fin -->
-<!-- inclusion du footer -->
-<?php include_once 'footer.php'; ?>
-
+<?php
+// inclusion du footer
+include_once 'footer.php';
+?>

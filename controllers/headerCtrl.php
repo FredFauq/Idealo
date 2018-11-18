@@ -7,5 +7,6 @@ if (isset($_GET['action'])) {
         session_destroy();
         //redirection de la page vers l'index
         header('location:index.php');
+        exit();
     }
 }

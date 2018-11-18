@@ -19,6 +19,11 @@ define('REGISTER_LOGIN','Identifiant');
 define('REGISTER_PASSWORD','Mot de passe');
 define('REGISTER_PASSWORD_VERIFY','Mot de passe (vérification)');
 define('REGISTER_SUBMIT','Enregistrer');
+define('REGISTER_LABEL_PRODUCT','Saisie du nom produit');
+define('REGISTER_TEXT_PRODUCT','Saisie du texte produit');
+define('REGISTER_PRICE_PRODUCT','Saisie du prix produit');
+define('REGISTER_BARCODE_PRODUCT','Saisie du code barre produit');
+define('REGISTER_IMG_PRODUCT','Saisie de l\'image du produit');
 //Erreur
 define('ERROR_LASTNAME','Erreur dans la saisie du nom');
 define('ERROR_FIRSTNAME','Erreur dans la saisie du prénom');
@@ -33,6 +38,14 @@ define('ERROR_LOGIN','Erreur dans la saisie de l\'identifiant');
 define('ERROR_PASSWORD','Erreur dans la saisie du mot de passe');
 define('USER_CONNECTION_SUCCESS','Connecté avec succès');
 define('USER_CONNECTION_ERROR','Erreur lors de la connexion');
+define('USER_REGISTRATION_SUCCESS','Enregistré avec succès');
+define('USER_REGISTRATION_ERROR','Erreur lors de l\'enregistrement');
+define('USER_CART_ERROR','Un problème est survenu veuillez contacter l\'administrateur du site');
+define('ERROR_LABEL_PRODUCT','Erreur dans la saisie du nom du produit');
+define('ERROR_TEXT_PRODUCT','Erreur dans la saisie du texte produit');
+define('ERROR_PRICE_PRODUCT','Erreur dans la saisie du prix du produit');
+define('ERROR_BARCODE_PRODUCT','Erreur dans la saisie du barcode du produit');
+define('ERROR_IMG_PRODUCT','Erreur dans la saisie de l\'image du produit');
 //Menu
 define('NAV_WELCOME','Bienvenue %s');
 define('NAV_REGISTER','Inscription');

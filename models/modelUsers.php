@@ -13,6 +13,7 @@ class users extends database {
     public $login = '';
     public $password = '';
     public $search = '';
+    
     public function __construct() {
         parent::__construct();
         $this->dbConnect();
@@ -47,9 +48,13 @@ class users extends database {
      * @return boolean
      */
     public function userConnection() {
-       
+       $state = false;
         // requête de récupération du login et du password par un select
-        $query = 'SELECT `id`, `login`, `password` FROM `gleola1_users` WHERE `login` = :login';
+        $query = 'SELECT `gleola1_users`.`id`, `gleola1_users`.`login`, `gleola1_users`.`password`, `gleola1_users`.`idRole` AS `role` '
+                . 'FROM `gleola1_users` '
+                . 'INNER JOIN `gleola1_role` '
+                . 'ON `gleola1_users`.`idRole` = `gleola1_role`.`id` '
+                . 'WHERE `login` = :login ';
         $result = $this->db->prepare($query);
         $result->bindValue(':login', $this->login, PDO::PARAM_STR);
         // On vérifie que la requête s'est bien exécutée
@@ -60,11 +65,9 @@ class users extends database {
                 // On hydrate
                 $this->login = $selectResult->login;
                 $this->password = $selectResult->password;
+                $this->role = $selectResult->role;
                 $this->id = $selectResult->id;
                 $state = true;
-            }
-            else {
-                 $state = false;
             }
         }
         return $state;
@@ -223,4 +226,3 @@ class users extends database {
     }
 }
 
-?>

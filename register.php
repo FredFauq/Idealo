@@ -1,10 +1,10 @@
 <?php
-// inclusion du header
-include_once 'header.php';
-// inclusion de la classe database
-include_once 'class/database.php';
+// inclusion du fichier configuration
+include_once 'configuration.php';
 // inclusion du contrôleur
 include_once 'controllers/registerCtrl.php';
+// inclusion du header
+include_once 'header.php';
 ?>
 <!-- formulaire d'inscription début -->
 <div class="container-fluid">
@@ -131,8 +131,12 @@ include_once 'controllers/registerCtrl.php';
             </div>
             <div class="form-group has-error">
                 <input class="btn btn-success" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
+                <a class="btn btn-success" type="text" href="index.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
             </div>
         </form>
+        <?php if ($message != '') { ?>
+                <h3><?= $message ?></h3>
+            <?php } ?>
     </div>
 </div>
 </div>

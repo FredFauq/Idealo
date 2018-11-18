@@ -1,8 +1,6 @@
 <?php 
 include_once 'header.php';
 ?>
-
- <section class="sectionOne">
  <!-- Carousel début -->
   <div class="container-fluid">
   <h1 class="text-center mb-3">
@@ -101,7 +99,7 @@ La plus haute qualité biologique depuis 2007</h1>
                 <div class="card-footer">
                     <div>
                         <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
-                        <a class="float-right" href="#" class="card-link"><i class="fa fa-shopping-cart mr-3"></i></a>
+                        <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus mr-3"></i></a>
                         <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
                     </div>
                     <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
@@ -125,7 +123,7 @@ La plus haute qualité biologique depuis 2007</h1>
                 <div class="card-footer">
                     <div>
                         <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
-                        <a class="float-right" href="#" class="card-link"><i class="fa fa-shopping-cart mr-3"></i></a>
+                        <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus mr-3"></i></a>
                         <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
                     </div>
                     <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
@@ -149,7 +147,7 @@ La plus haute qualité biologique depuis 2007</h1>
                 <div class="card-footer">
                     <div>
                         <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
-                        <a class="float-right" href="#" class="card-link"><i class="fa fa-shopping-cart mr-3"></i></a>
+                        <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus mr-3"></i></a>
                         <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
                     </div>
                     <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
@@ -173,7 +171,7 @@ La plus haute qualité biologique depuis 2007</h1>
                 <div class="card-footer">
                     <div>
                         <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
-                        <a class="float-right" href="#" class="card-link"><i class="fa fa-shopping-cart mr-3"></i></a>
+                        <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus mr-3"></i></a>
                         <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
                     </div>
                     <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
@@ -182,7 +180,7 @@ La plus haute qualité biologique depuis 2007</h1>
             <!--/.Card-->
         </div>
         <!-- fin card page -->
-        </section>
-        <!-- fin sectionOne
-        <?php include_once 'footer.php'; ?>
+        <?php 
+        include_once 'footer.php'; 
+        ?>
         

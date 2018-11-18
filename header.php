@@ -3,8 +3,6 @@
 session_start();
 // inclusion du fichier configuration
 include_once 'configuration.php';
-// inclusion du fichier de langue
-include_once 'lang/FR_FR.php';
 // inclusion du controller
 include_once 'controllers/headerCtrl.php';
 ?>
@@ -55,20 +53,24 @@ include_once 'controllers/headerCtrl.php';
                             <a class="dropdown-item" href="#">Table</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
-                            <a class = "nav-link" href="register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
-                                                    <?php } else { ?>
-                        <a class = "nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><?= sprintf(NAV_WELCOME,$_SESSION['login']) ?></a>  
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="<?= $_SERVER['PHP_SELF'] ?>?action=disconnect"><i class="fas fa-sign-out-alt"></i><?= NAV_DISCONNECT ?></a>
-                            </div>
+                            <a class = "nav-link" id="register" href="register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
+                        <?php } else { ?>
+                        <a class = "navbar-text" ><?= sprintf(NAV_WELCOME,$_SESSION['login']) ?></a>  
                         <?php
                           }
                         ?>
                     </li>
-                    <li class="nav-item" id="connectLink">
+                    
+                    <li class="nav-item" id="login">
+                        <?php if (!isset($_SESSION['isConnect'])) { ?>
                         <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                        <?php } else { ?>
+                        <a class = "nav-link" id = "deconnect" href="<?= $_SERVER['PHP_SELF'] ?>?action=disconnect"><i class="fas fa-sign-out-alt"></i><?= NAV_DISCONNECT ?></a>
+                       <?php
+                          }
+                        ?>
                     </li>
                 </ul>
                 <form class="form-inline">
@@ -84,7 +86,7 @@ include_once 'controllers/headerCtrl.php';
                 <!-- Right -->
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link waves-effect">
+                        <a class="nav-link waves-effect" href = "cart.php">
                             <span class="badge badge-danger"> 1 </span>
                             <i class="fas fa-shopping-cart"></i>
                             <span class="clearfix d-none d-sm-inline-block"> PANIER </span>

@@ -12,6 +12,7 @@ $phone = '';
 $login = '';
 $password = '';
 $passwordVerify = '';
+$message= '';
 $errorList = array();
 
 //Appel AJAX
@@ -111,6 +112,10 @@ if (isset($_POST['loginVerify'])) {
         $user->login = $login;
         $user->password = $password;
         // on éxécute la méthode registerUser
-        $user->registerUser();  
+        $user->registerUser();
+        header('location: index.php');
+        exit;
+        // si l'enregistrement se fait on afficche le message de réusssite
+        $message = USER_REGISTRATION_SUCCESS;
     }
 }
