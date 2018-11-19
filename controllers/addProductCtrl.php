@@ -1,6 +1,7 @@
 <?php
 // on initialise les variables
 $labelProduct = '';
+$labelCategory = '';
 $textProduct = '';
 $priceProduct = '';
 $barcodeProduct = '';
@@ -19,6 +20,13 @@ $errorList = array();
         $errorList['labelProduct'] = ERROR_LABEL_PRODUCT;
     }
 
+     if (!empty($_POST['labelCategory'])) {
+        $textProduct = htmlspecialchars($_POST['labelCategory']);
+    } else {
+        $errorList['labelCategory'] = ERROR_LABEL_CATEGORY;
+    }
+    
+    
     if (!empty($_POST['textProduct'])) {
         $textProduct = htmlspecialchars($_POST['textProduct']);
     } else {

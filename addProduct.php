@@ -6,6 +6,7 @@ include_once 'controllers/addProductCtrl.php';
 ?>
 <!-- formulaire d'inscription début -->
 <div class="container-fluid">
+    <div class="row justify-content-center">
     <div id="formBox" class="col-xs-12 ml-auto mr-auto col-sm-12 ml-auto mr-auto col-md-12 col-lg-6 ml-auto mr-auto col-xl-6 ml-auto mr-auto">
         <h2>ADMINISTRATION</h2>
         <div id="status">
@@ -16,6 +17,12 @@ include_once 'controllers/addProductCtrl.php';
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
                     <input type="text" name="labelProduct" class="form-control" id="labelProduct" placeholder="<?= REGISTER_LABEL_PRODUCT ?>" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                    <input type="text" name="labelCategory" class="form-control" id="labelProduct" placeholder="<?= REGISTER_LABEL_CATEGORY ?>" required/>
                 </div>
             </div>
             <div class="form-group">
@@ -46,10 +53,11 @@ include_once 'controllers/addProductCtrl.php';
                 </div>
             </div>
             <div class="form-group">
-                <input class="btn btn-success" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
-                <a class="btn btn-success" type="text" href="index.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
+                <input class="btn btn-success" type="submit" name="registerProduct" id="register" value="<?= REGISTER_SUBMIT ?>"/>
+                <a class="btn btn-success" type="text" href="menuAdmin.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
             </div>
         </form>
+    </div>
     </div>
 </div>
 <!-- formulaire administrateur fin -->

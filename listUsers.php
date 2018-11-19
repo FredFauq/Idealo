@@ -6,17 +6,17 @@ include_once 'header.php';
             <div class="row">
                 <div class="list offset-2 col-8 text-center">
                     <div class="firstTest offset-2 col-8 text-center">           
-                        <h3>- Liste des Produits -</h3>
-                        <form class="search" method="post" action="listProducts.php">
+                        <h3>- Liste des Utilisateurs -</h3>
+                        <form class="search" method="post" action="listUsers.php">
                             <input type="text" name="search" placeholder="Recherche..">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                             <?php
-                            if (isset(getProductsList)) {
-                                if (getProductsList === false) {
+                            if (isset(getUserList)) {
+                                if (getUserList === false) {
                                     ?>
                                     <p>Il y a eu un problème</p>
                                     <?php
-                                } elseif (count(getProductsList) === 0) {
+                                } elseif (count(getUserList) === 0) {
                                     ?>
                                     <p>Il n'y a aucun résultat</p>
                                     <?php
@@ -27,27 +27,33 @@ include_once 'header.php';
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">Produit</th>
-                                            <th scope="col">Catégories</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Prix</th>
-                                            <th scope="col">Code Barre</th>
-                                            <th scope="col">Image</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Prénom</th>
+                                            <th scope="col">Date de Naissance</th>
+                                            <th scope="col">Adresse</th>
+                                            <th scope="col">Code Postal</th>
+                                            <th scope="col">Ville</th>
+                                            <th scope="col">Pays</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Téléphone</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($listProducts AS $product) { ?>
+                                        <?php foreach ($listProducts AS $user) { ?>
                                             <tr>
-                                                <td><?= $product->id ?></td>
-                                                <td><?= $product->labelProduct ?></td>
-                                                <td><?= $product->labelProduct ?></td>
-                                                <td><?= $product->textProduct ?></td>
-                                                <td><?= $product->priceProduct ?></td>
-                                                <td><?= $product->barcodeProduct ?></td>
-                                                <td><?= $product->imgProduct ?></td>
-                                                <td><a href="updateProduct.php?id=<?= $product->id ?>"><img src="/assets/img/icons/icons8-ajouter-une-étiquette-24.png"></i></a></td>
-                                                <td><form method = "POST" action="?id=<?= $product->id ?>">
-                                                        <button type="submit" value="" name="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
+                                                <td><?= $user->id ?></td>
+                                                <td><?= $user->lastname ?></td>
+                                                <td><?= $user->firstname ?></td>
+                                                <td><?= $user->birthdate ?></td>
+                                                <td><?= $user->address ?></td>
+                                                <td><?= $user->zipcode ?></td>
+                                                <td><?= $user->city ?></td>
+                                                <td><?= $user->country ?></td>
+                                                <td><?= $user->mail ?></td>
+                                                <td><?= $user->phone ?></td>
+                                                <td><a href="updateUser.php?id=<?= $user->id ?>"><i class="fas fa-user-edit"></i></a></td>
+                                                <td><form method = "POST" action="?id=<?= $user->id ?>">
+                                                        <button type="submit" value="" name="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i></i>
                                                         </button>
                                                     </form>
                                                 </td>
@@ -66,19 +72,19 @@ include_once 'header.php';
                     <ul class="pagination">
                         <?php if ($page > 1) { ?>
                             <li class="page-item">
-                                <a class="page-link" href="listProducts.php?page=<?= $page - 1 ?>">&laquo;</a>
+                                <a class="page-link" href="listUsers.php?page=<?= $page - 1 ?>">&laquo;</a>
                             </li>
                         <?php } ?>
                         <?php for ($i = 1; $i <= $numberOfPages; $i++) { ?>
-                            <li class="page-item <?= $_SERVER['PHP_SELF'] == '/listProducts.php?page=' ?> ? . 'active' : '' ">
-                                <a class="page-link" href="listProducts.php?page=<?= $i ?>"><?= $i ?></a>
+                            <li class="page-item <?= $_SERVER['PHP_SELF'] == '/listUsers.php?page=' ?> ? . 'active' : '' ">
+                                <a class="page-link" href="listUsers.php?page=<?= $i ?>"><?= $i ?></a>
                             </li>
                             <?php
                         }
                         ?>
                         <?php if ($page < $numberOfPages) { ?>
                             <li class="page-item">
-                                <a class="page-link" href="listProducts.php?page=<?= $page + 1 ?>">&raquo;</a>
+                                <a class="page-link" href="listUsers.php?page=<?= $page + 1 ?>">&raquo;</a>
                             </li>
                             <?php
                         }

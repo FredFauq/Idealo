@@ -21,7 +21,8 @@ include_once 'controllers/headerCtrl.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
         <script src="../assets/js/script.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
-        <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
         <!-- My custom styles -->
         <link href="../assets/css/style.css" rel="stylesheet">
         <title><?= ($_SERVER['PHP_SELF']) == 'index.php' ? LOGIN_TITLE : REGISTER_TITLE ?></title>
@@ -55,7 +56,7 @@ include_once 'controllers/headerCtrl.php';
                     </li>
                     <li class="nav-item">
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
-                            <a class = "nav-link" id="register" href="register.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
+                            <a class = "nav-link" id="register" href="registerUser.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
                         <?php } else { ?>
                         <a class = "navbar-text" ><?= sprintf(NAV_WELCOME,$_SESSION['login']) ?></a>  
                         <?php
@@ -65,7 +66,7 @@ include_once 'controllers/headerCtrl.php';
                     
                     <li class="nav-item" id="login">
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
-                        <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                        <a class="nav-link" href="loginUser.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                         <?php } else { ?>
                         <a class = "nav-link" id = "deconnect" href="<?= $_SERVER['PHP_SELF'] ?>?action=disconnect"><i class="fas fa-sign-out-alt"></i><?= NAV_DISCONNECT ?></a>
                        <?php
@@ -77,7 +78,7 @@ include_once 'controllers/headerCtrl.php';
                     <div class="input-group">
                     <input class="form-control mr-sm-2" type="text" placeholder="Recherche" aria-label="Search">
                     <div class="input-group-btn">
-                        <button class="btn btn-success" type="submit">
+                        <button class="btn btn-success" type="submit" id = "searchBtn">
                         <i class="fas fa-search"></i>
                         </button>
                     </div>

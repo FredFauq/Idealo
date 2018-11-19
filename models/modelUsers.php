@@ -97,7 +97,7 @@ class users extends database {
     public function getUserList() {
         // on declare un tableau vide
         $getUserList = array();
-        $query = 'SELECT `id`, `lastname`, `firstname` FROM `gleola1_users` LIMIT 10';
+        $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` LIMIT 10';
                $userList=$this->db->query($query);
          // si il y a une erreur on renvoie le tableau vide
         if(is_object($userList)){
@@ -111,7 +111,7 @@ class users extends database {
      * @return type
      */
     public function getUserProfilByID() {
-                $query = 'SELECT `id`, `lastname`, `firstname`, `address`, `birthdate`, `phone`, `mail` FROM `gleola1_users` WHERE `id` = :id';
+                $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` WHERE `id` = :id';
              // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
            $userProfil=$this->db->prepare($query);
          $userProfil->bindValue(':id', $this->id, PDO::PARAM_INT);

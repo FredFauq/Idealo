@@ -27,8 +27,8 @@ include_once 'header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-success" type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
-                    <a class="btn btn-success" type="text" href="index.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
+                    <input class="btn btn-success btn-sm" type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
+                    <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
                 </div>
             </form>
             <?php if ($message != '') { ?>
@@ -42,11 +42,11 @@ include_once 'header.php';
     $('#loginSubmit').blur(function () {
         $.post('controllers/loginCtrl.php', { loginVerify:$(this).val() } , function (data) {
             if(data == 1){
-                $('#loginSubmit').show();
-                $('#loginOut').hide();
+               $('#login').addClass('bg-danger');
+                $('#register').hide();
             }else{ 
-                $('#loginSubmit').hide();
-                $('#loginOut').show();
+                $('#login').removeClass('bg-danger'); 
+                $('#register').show();
             }
         },
         'JSON');

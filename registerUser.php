@@ -129,9 +129,9 @@ include_once 'header.php';
                     </div>
                 </div>
             </div>
-            <div class="form-group has-error">
-                <input class="btn btn-success" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
-                <a class="btn btn-success" type="text" href="index.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
+            <div class="form-group">
+                <input class="btn btn-success btn-sm" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
+                <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
             </div>
         </form>
         <?php if ($message != '') { ?>
