@@ -11,12 +11,12 @@ if (!empty($_POST['login'])) {
     $errorList['login'] = ERROR_LOGIN;
 }
 if (!empty($_POST['password'])) {
-    $password = $_POST['password'];
+    $password = htmlspecialchars($_POST['password']);
 } else {
     $errorList['password'] = ERROR_PASSWORD;
 }
 // on vérifie qu'il n'y a pas d'erreur
-if (count($errorList) == 0) {
+ if (count($errorList) == 0) {
     // on instancie la classe users
     $user = new users();
     // on passe la valeur du champ
@@ -27,23 +27,28 @@ if (count($errorList) == 0) {
         if (password_verify($password, $user->password)) {
             // si la connexion se fait on afficche le message de réusssite
             $message = USER_CONNECTION_SUCCESS;
+            // démarrage de cession
+            session_start();
             // On rempli la session avec les attributs de l'objet issus de l'hydratation
             $_SESSION['login'] = $user->login;
             $_SESSION['id'] = $user->id;
             $_SESSION['role'] = $user->role;
             $_SESSION['isConnect'] = true;
-            $role = $user->role;
-            if($role == 2){
-               header('location: menuAdmin.php');
-                exit;
-            } else {
+            // si la variable de session role = 2 c'est l'administrateur
+            if($_SESSION['role'] == 2){
+                // on redirige sur la page administration
+                header('location: menuAdmin.php');
+                exit();
+                } 
+                // si la variable de session role = 1 c'est un utilisateur
+                if ($_SESSION['role'] == 1){
+                // on redirige sur la page index
                header('location: index.php');
-                exit; 
-            }
-        }
-    } else {
+                exit(); 
+                }
+        } else {
         // si la connexion échoue on affiche le message d'erreur
         $message = USER_CONNECTION_ERROR;
     }
 }
-
+}

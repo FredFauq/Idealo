@@ -61,7 +61,6 @@ class users extends database {
         $queryDelete = 'DELETE FROM `gleola1_Products` WHERE `id` = :id';
         // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($queryDelete);
-        // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result->bindvalue(':id', $this->id, PDO::PARAM_INT);
         // On exécute la requête.
         return $result->execute();

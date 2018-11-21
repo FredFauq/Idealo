@@ -110,30 +110,30 @@ class users extends database {
      * Méthode pour recupérer un utilisateur par son id
      * @return type
      */
-    public function getUserProfilByID() {
-                $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` WHERE `id` = :id';
+    public function getUserProfileByID() {
+                $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone`, `login`, `password` FROM `gleola1_users` WHERE `id` = :id';
              // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
-           $userProfil=$this->db->prepare($query);
-         $userProfil->bindValue(':id', $this->id, PDO::PARAM_INT);
+           $userProfile=$this->db->prepare($query);
+         $userProfile->bindValue(':id', $this->id, PDO::PARAM_INT);
            // on utilise la méthode execute() via un return
-       $userProfil->execute();
-            if (is_object($userProfil)){
+       $userProfile->execute();
+            if (is_object($userProfile)){
                 /* On crée la variable $getUserProfilByID qui va nous permettre de retourner le resultat 
              * La fonction fetch permet d'afficher la ligne de la requète que je souhaite récupérer
              */
-            $getUserProfilByID = $userProfil->fetch(PDO::FETCH_OBJ);
+            $getUserProfileByID = $userProfile->fetch(PDO::FETCH_OBJ);
             }
         // on renvoie le résultat   
-        return $getUserProfilByID;
+        return $getUserProfileByID;
     }
     /**
      * Méthode pour modifier un profil utilisateur
      * @return type
      */
-    public function changeUserProfil() {
+    public function changeUserProfile() {
            // Préparation de la requête d'update de patient dans la BDD.
            $queryUpdateUser = 'UPDATE `gleola1_users` '
-                   . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail '  
+                   . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail, `login` = :login, `password` = :password '  
                    . 'WHERE `id` = :id';
            $updateUser = $this->db->prepare($queryUpdateUser);
            // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
@@ -146,6 +146,8 @@ class users extends database {
            $updateUser->bindValue(':country', $this->country, PDO::PARAM_STR);
            $updateUser->bindValue(':phone', $this->phone, PDO::PARAM_STR);
            $updateUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+           $updateUser->bindValue(':login', $this->login, PDO::PARAM_STR);
+           $updateUser->bindValue(':password', $this->password, PDO::PARAM_STR);
            $updateUser->bindValue(':id', $this->id, PDO::PARAM_INT);
            // On exécute la requête.
            return $updateUser->execute();     
@@ -154,7 +156,7 @@ class users extends database {
      * Méthode pour supprimer un utilisateur
      * @return type
      */
-    public function deleteUserProfil() {
+    public function deleteUserProfile() {
         // preparation de la requête Delete du user dans la BDD
         $queryDelete = 'DELETE FROM `gleola1_users` WHERE `id` = :id';
         $user = $this->db->prepare($queryDelete);

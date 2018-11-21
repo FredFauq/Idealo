@@ -26,33 +26,30 @@ include_once 'header.php';
                         <input type="password" name="password" class="form-control" id="password" placeholder="<?= FORM_PASSWORD ?>" required/>
                     </div>
                 </div>
+                        <input type="checkbox" onclick="PasswordShowFunction()"/>Afficher le mot de passe
                 <div class="form-group">
                     <input class="btn btn-success btn-sm" type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
                     <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
                 </div>
             </form>
             <?php if ($message != '') { ?>
-                <h3><?= $message ?></h3>
+             <!--  contenu Modal -->
+<div class="modal-content">
+  <div class="modal-header">
+    <span class="close">&times;</span>
+    <h2><?= $message ?></h2>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <a type="button" href = "index.php" class="btn btn-secondary" data-dismiss="modal">Accueil</a>
+  </div>
+</div> 
+              <!--  Fin contenu Modal -->  
             <?php } ?>
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-    $('#loginSubmit').blur(function () {
-        $.post('controllers/loginCtrl.php', { loginVerify:$(this).val() } , function (data) {
-            if(data == 1){
-               $('#login').addClass('bg-danger');
-                $('#register').hide();
-            }else{ 
-                $('#login').removeClass('bg-danger'); 
-                $('#register').show();
-            }
-        },
-        'JSON');
-    });
-});
-</script>
 <!-- formulaire de connexion fin -->
 <?php
 // inclusion du footer

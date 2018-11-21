@@ -14,8 +14,10 @@ $password = '';
 $passwordVerify = '';
 $message= '';
 $errorList = array();
+// regex
+$regexPhone = '/^(\d){10}$/';
+$regexLogin = '/^[a-zA-Z0-9_\- @éèàùëïôê]{6,20}$/';
 
-//Appel AJAX
 // on vérifie la concordance du login
 if (isset($_POST['loginVerify'])) {
     include_once '../configuration.php';
@@ -78,13 +80,13 @@ if (isset($_POST['loginVerify'])) {
         $errorList['mail'] = ERROR_MAIL;
     }
     
-      if (!empty($_POST['phone'])) {
+      if (!empty($_POST['phone']) && preg_match($regexPhone, $phone)) {
         $phone = htmlspecialchars($_POST['phone']);
     } else {
         $errorList['phone'] = ERROR_PHONE;
     }
     
-    if (!empty($_POST['login'])) {
+    if (!empty($_POST['login']) && preg_match($regexLogin, $login)) {
         $login = htmlspecialchars($_POST['login']);
     } else {
         $errorList['login'] = ERROR_LOGIN;

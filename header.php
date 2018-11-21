@@ -23,8 +23,9 @@ include_once 'controllers/headerCtrl.php';
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
         <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
-        <!-- My custom styles -->
+        <!-- Mon css styles -->
         <link href="../assets/css/style.css" rel="stylesheet">
+        <!-- condition ternaire sur la variable server PHP_SELF pour changement du titre -->
         <title><?= ($_SERVER['PHP_SELF']) == 'index.php' ? LOGIN_TITLE : REGISTER_TITLE ?></title>
     </head>
     <body>
@@ -55,21 +56,44 @@ include_once 'controllers/headerCtrl.php';
                         </div>
                     </li>
                     <li class="nav-item">
+                        <!-- si on n'est pas connecté -->
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
+                            <!-- on affiche le lien pour s'inscrire -->
                             <a class = "nav-link" id="register" href="registerUser.php"><i class="fas fa-user-plus"></i><?= NAV_REGISTER ?></a>
                         <?php } else { ?>
+                            <!-- et si on l'est on affiche un message de bienvenue personnalisé par le login -->
                         <a class = "navbar-text" ><?= sprintf(NAV_WELCOME,$_SESSION['login']) ?></a>  
                         <?php
                           }
                         ?>
                     </li>
-                    
-                    <li class="nav-item" id="login">
+                    <li class="nav-item" id="loginProfil">
+                        <!-- si on est connecté -->
+                        <?php if (isset($_SESSION['isConnect'])) { ?>
+                        <!-- et si on l'est on affiche un lien Profil -->
+                        <a class = "nav-link" id = "profile" href="changeUserProfile.php" ><i class="fas fa-user"></i><?= sprintf(NAV_PROFILE,$_SESSION['login']) ?></a>
+                        <?php
+                          }
+                        ?>
+                    </li>
+                    <li class="nav-item" id="menuAdmin">
+                        <!-- si on est connecté en tant qu'administrateur -->
+                        <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
+                        <!-- accés au menu administrateur -->
+                        <a class = "nav-link" id = "menuAdmin" href="menuAdmin.php" ><i class="fas fa-bars"></i><?= NAV_MENU_ADMIN ?></a>
+                        <?php
+                          }
+                        ?>
+                    </li>
+                    <li class="nav-item" id="loginDeconnect">
+                        <!-- si on n'est pas connecté -->
                         <?php if (!isset($_SESSION['isConnect'])) { ?>
+                        <!-- on affiche le lien pour se connecter -->
                         <a class="nav-link" href="loginUser.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                         <?php } else { ?>
-                        <a class = "nav-link" id = "deconnect" href="<?= $_SERVER['PHP_SELF'] ?>?action=disconnect"><i class="fas fa-sign-out-alt"></i><?= NAV_DISCONNECT ?></a>
-                       <?php
+                        <!-- et si on l'est on affiche un lien de déconnexion -->
+                        <a class = "nav-link" id = "disconnect" href="<?= $_SERVER['PHP_SELF'] ?>?action=disconnect"><i class="fas fa-sign-out-alt"></i><?= NAV_DISCONNECT ?></a>
+                        <?php
                           }
                         ?>
                     </li>

@@ -3,21 +3,21 @@
 include_once 'header.php';
 ?>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row  justify-content-center">
         <div class="list offset-2 col-8 text-center">
                 <div class="firstTest offset-2 col-8 text-center">           
             <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
-                    <h3>- Liste des Utilisateurs -</h3>
-                    <form class="search" method="post" action="listUsers.php">
+                    <h3>- Liste des Catégories -</h3>
+                    <form class="search" method="post" action="listCategories.php">
                         <input type="text" name="search" placeholder="Recherche..">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
                         <?php
-                        if (isset(getUserList)) {
-                            if (getUserList === false) {
+                        if (isset(getCategoriesList)) {
+                            if (getCategoriesList === false) {
                                 ?>
                                 <p>Il y a eu un problème</p>
                                 <?php
-                            } elseif (count(getUserList) === 0) {
+                            } elseif (count(getCategoriesList) === 0) {
                                 ?>
                                 <p>Il n'y a aucun résultat</p>
                                 <?php
@@ -28,38 +28,22 @@ include_once 'header.php';
                                 <thead>
                                     <tr>
                                         <th scope="col">Id</th>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Prénom</th>
-                                        <th scope="col">Date de Naissance</th>
-                                        <th scope="col">Adresse</th>
-                                        <th scope="col">Code Postal</th>
-                                        <th scope="col">Ville</th>
-                                        <th scope="col">Pays</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Téléphone</th>
+                                        <th scope="col">Catègorie</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($listProducts AS $user) { ?>
+                                    <?php foreach ($listCategories AS $category) { ?>
                                         <tr>
-                                            <td><?= $user->id ?></td>
-                                            <td><?= $user->lastname ?></td>
-                                            <td><?= $user->firstname ?></td>
-                                            <td><?= $user->birthdate ?></td>
-                                            <td><?= $user->address ?></td>
-                                            <td><?= $user->zipcode ?></td>
-                                            <td><?= $user->city ?></td>
-                                            <td><?= $user->country ?></td>
-                                            <td><?= $user->mail ?></td>
-                                            <td><?= $user->phone ?></td>
-                                            <td><a href="updateUser.php?id=<?= $user->id ?>"><i class="fas fa-user-edit"></i></a></td>
-                                            <td><form method = "POST" action="?id=<?= $user->id ?>">
-                                                    <button type="submit" value="" name="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i></i>
+                                            <td><?= $category->id ?></td>
+                                            <td><?= $category->nameCategory ?></td>
+                                            <td><a href="updateCategory.php?id=<?= $category->id ?>"><img src="/assets/img/icons/icons8-ajouter-une-étiquette-24.png"></i></a></td>
+                                            <td><form method = "POST" action="?id=<?= $category->id ?>">
+                                                    <button type="submit" value="" name="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    <?php
+                                        <?php
                                     }
                                 }
                             }
@@ -73,21 +57,21 @@ include_once 'header.php';
             <ul class="pagination">
                 <?php if ($page > 1) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="listUsers.php?page=<?= $page - 1 ?>">&laquo;</a>
+                        <a class="page-link" href="listProducts.php?page=<?= $page - 1 ?>">&laquo;</a>
                     </li>
                 <?php } ?>
                 <?php for ($i = 1; $i <= $numberOfPages; $i++) { ?>
-                    <li class="page-item <?= $_SERVER['PHP_SELF'] == '/listUsers.php?page=' ?> ? . 'active' : '' ">
-                        <a class="page-link" href="listUsers.php?page=<?= $i ?>"><?= $i ?></a>
+                    <li class="page-item <?= $_SERVER['PHP_SELF'] == '/listProducts.php?page=' ?> ? . 'active' : '' ">
+                        <a class="page-link" href="listProducts.php?page=<?= $i ?>"><?= $i ?></a>
                     </li>
-                <?php
+                    <?php
                 }
                 ?>
                 <?php if ($page < $numberOfPages) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="listUsers.php?page=<?= $page + 1 ?>">&raquo;</a>
+                        <a class="page-link" href="listProducts.php?page=<?= $page + 1 ?>">&raquo;</a>
                     </li>
-                <?php
+                    <?php
                 }
                 ?>
             </ul>
@@ -96,9 +80,6 @@ include_once 'header.php';
         <a href="menuAdmin.php"><i class="fas fa-sign-out-alt fa-4x"></i></a>
     </div>
     <?= $_SERVER['PHP_SELF'] ?>
-    <?php
-} else {
-    ?>
     <div class="card-header">
         <h2 class="card-title">
             <span class="glyphicon glyphicon-bookmark"></span>Accés refusé</h2>
