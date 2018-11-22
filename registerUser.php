@@ -7,9 +7,12 @@ include_once 'controllers/registerCtrl.php';
 include_once 'header.php';
 ?>
 <!-- formulaire d'inscription début -->
-<div class="container-fluid">
-
-    <div id="formBox" class="col-12 ml-auto mr-auto col-sm-12 ml-auto mr-auto col-md-12 col-lg-6 ml-auto mr-auto col-xl-6 ml-auto mr-auto">
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="card text-center">
+    <div class="card-header">
+    
         <h2>
 <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { 
         echo NAV_SAVE_USER;
@@ -21,6 +24,8 @@ include_once 'header.php';
         <div id="status">
             Veuillez remplir tous les champs SVP
         </div>
+    </div>
+        <div class="card-body">
         <form class="needs-validation" novalidate action="#" method="POST">
             <div class="form-group row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-6 mb-2">
@@ -66,7 +71,7 @@ include_once 'header.php';
             </div>
             <div class="form-group row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-                    <div class="input-group">
+                    <div class="input-groupt">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
                             <input type="text" name="zipcode" class="form-control form-control-sm" id="zipcode" placeholder="<?= REGISTER_ZIPCODE ?>" required/>
@@ -137,14 +142,19 @@ include_once 'header.php';
                 </div>
             </div>
              <p>En créant un compte, vous acceptez nos <a href="#">Conditions d'utilisation et confidentialité.</a></p>
+        </div>
+             <div class="card-footer">
             <div class="form-group">
                 <input class="btn btn-success btn-sm" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
                 <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
             </div>
+             </div>
         </form>
         <?php if ($message != '') { ?>
                 <h3><?= $message ?></h3>
             <?php } ?>
+    </div>
+    </div>
     </div>
 </div>
 </div>

@@ -276,7 +276,7 @@ include_once 'header.php';
 </div>
 <!-- fin card page -->
 <!-- debut bouton top page -->
-<button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
 <!-- fin bouton top page -->
 <?php
 include_once 'footer.php';

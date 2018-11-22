@@ -50,27 +50,16 @@ window.onclick = function(event) {
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById('topBtn').style.display = 'block';
+        document.getElementById("topBtn").style.display = "block";
     } else {
-        document.getElementById('topBtn').style.display = 'none';
+        document.getElementById("topBtn").style.display = "none";
     }
 }
-
- // Fonction pour la snackbar
-                function snackbarFunction() {
-                    // Récupération de la snackbar DIV
-                    $snackbar = document.getElementById('snackbar');
-                    // Ajoute le "show" class à la DIV
-                    $snackbar.className = 'show';
-                    // Après 3 secondes, enlève le show class de la DIV
-                    setTimeout(function(){ $snackbar.className = $snackbar.className.replace('show', ''); }, 3000);
-                    
 // Fonction quand l'utilisateur clique sue le bouton, scroll jusqu'au début de la page
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
-
 // fonction d'affichage du mot de passe par checkbox
 function PasswordShowFunction() {
     var x = document.getElementById('password');

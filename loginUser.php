@@ -7,11 +7,16 @@ include_once 'controllers/loginCtrl.php';
 include_once 'header.php';
 ?>
 <!-- formulaire de connexion début -->
-<div class="container-fluid">
-    <div class="row">
-        <div id="formBox" class="col-12 col-sm-6 ml-auto mr-auto col-md-6 ml-auto mr-auto col-lg-4 ml-auto mr-auto col-xl-4 ml-auto mr-auto">
-            <h2>CONNEXION</h2>
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+             <!--  contenu card -->
             <form action="#" method="POST">
+    <div class="card text-center">
+    <div class="card-header">
+            <h2>CONNEXION</h2>
+    </div>
+        <div class="card-body">
                 <div class="form-group">
                     <label for="login"></label>
                     <div class="input-group-prepend">
@@ -27,26 +32,19 @@ include_once 'header.php';
                     </div>
                 </div>
                         <input type="checkbox" onclick="PasswordShowFunction()"/>Afficher le mot de passe
+            </div>
+<div class="card-footer">
                 <div class="form-group">
                     <input class="btn btn-success btn-sm" type="submit" value="<?= FORM_LOGIN_SUBMIT ?>" name="loginSubmit" id="loginSubmit" />
                     <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
                 </div>
-            </form>
             <?php if ($message != '') { ?>
-             <!--  contenu Modal -->
-<div class="modal-content">
-  <div class="modal-header">
-    <span class="close">&times;</span>
     <h2><?= $message ?></h2>
-  </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <a type="button" href = "index.php" class="btn btn-secondary" data-dismiss="modal">Accueil</a>
+            <?php } ?>
   </div>
 </div> 
-              <!--  Fin contenu Modal -->  
-            <?php } ?>
+            </form>
+              <!--  Fin contenu Card -->  
         </div>
     </div>
 </div>

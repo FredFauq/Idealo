@@ -24,7 +24,7 @@ include_once 'controllers/headerCtrl.php';
         <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
         <!-- Mon css styles -->
-        <link href="../assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
         <!-- condition ternaire sur la variable server PHP_SELF pour changement du titre -->
         <title><?= ($_SERVER['PHP_SELF']) == 'index.php' ? LOGIN_TITLE : REGISTER_TITLE ?></title>
     </head>

@@ -5,15 +5,20 @@ include_once 'header.php';
 include_once 'controllers/addProductCtrl.php';
 ?>
 <!-- formulaire d'ajout produit début -->
-<div class="container-fluid">
+<div class="container">
     <div class="row justify-content-center">
-            <div id="formBox" class="col-xs-12 ml-auto mr-auto col-sm-12 ml-auto mr-auto col-md-12 col-lg-6 ml-auto mr-auto col-xl-6 ml-auto mr-auto">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+             <!--  contenu card -->
+            <form action="#" method="POST">
+    <div class="card text-center">
+    <div class="card-header">
         <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
                 <h2>Ajout d'un produit</h2>
                 <div id="status">
                     ADMINISTRATION
                 </div>
-                <form class="needs-validation" novalidate action="#" method="POST">
+    </div>
+                <div class="card-body">
                     <div class="form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-tag"></i></span>
@@ -53,14 +58,18 @@ include_once 'controllers/addProductCtrl.php';
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
                     <div class="form-group">
                         <input class="btn btn-success" type="submit" name="registerProduct" id="register" value="<?= REGISTER_SUBMIT ?>"/>
                         <a class="btn btn-success" type="text" href="menuAdmin.php" name="loginOut" id="loginOut"><i class="fas fa-share-square"></i></a>
                     </div>
-                </form>
+                    </div>
+                </div>
             </div>
+                </form>
         </div>
     </div>
+</div>
     <!-- formulaire ajout Produit fin -->
     <?php
 } else {
