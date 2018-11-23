@@ -1,6 +1,6 @@
 <?php
 
-class users extends database {
+class categories extends database {
 
     public $id = 0;
     public $nameCategory = '';
@@ -28,6 +28,23 @@ class users extends database {
         }
         return $state;
     }
+         /**
+     * Méthode pour recupérer la liste des catègories
+     * @return type
+     */
+    public function getCategoryList() {
+        // on declare un tableau vide
+        $getCategoryList = array();
+        $query = 'SELECT `id`, `nameCategory` FROM `gleola1_categories` LIMIT 10';
+               $categoryList=$this->db->query($query);
+         // si il y a une erreur on renvoie le tableau vide
+        if(is_object($categoryList)){
+            $getCategoryList=$categoryList->fetchAll(PDO::FETCH_OBJ);
+        }
+        // on renvoie le résultat
+        return $getCategoryList;
+    }
+   
      /**
      * Méthode permettant l'enregistrement d'une catègorie
      * @return boolean
@@ -43,7 +60,7 @@ class users extends database {
     }
     /**
      * Méthode permettant la suppression d'une catègorie
-     * @return boolean
+     * @return boolean 
      */
     public function deleteCategory() {
         // requête  de suppression d'une catègorie
@@ -74,3 +91,4 @@ class users extends database {
             $result = false;
         }
     }
+}

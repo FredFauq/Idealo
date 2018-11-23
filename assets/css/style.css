@@ -25,7 +25,6 @@ h2 {
 p {
     font-size: .75em;
     padding: 0;
-    
 }
 i {
     text-shadow: 2px 2px 4px grey;
@@ -33,9 +32,8 @@ i {
 .container-fluid{
     height: 100%;
     width:100%;
-    
 }
-#formBox{
+/*#formBox{
     padding-top: 10px;
     padding-bottom: 40px;
     border: 1px solid black;
@@ -45,16 +43,27 @@ i {
     margin-bottom: 50px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+}*/
 .form-control{
      border:1px solid Black;
      background-color: #e5e0e0;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     padding: 0;
+     padding-left: 5px;
 }
 .input-group-text {
     border: 1px solid black;
     background-color: #4bcc67;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}col-xs-12 col-md-6 col-lg-6 col-xl-6 mb-2 {
+    width: 100%;
+}
+
+.form-control form-control-sm {
+    padding: 0;
+}
+.input-group-prepend {
+    width: 100%;
 }
 #imgProduct {
     border: 1px solid black;
@@ -78,7 +87,6 @@ i {
     margin-bottom: 15px;
     border: 1px solid black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
 }
 .card:hover img {
     transition: all .2s ease-in-out;
@@ -163,19 +171,16 @@ body, .btn {
     .carousel-inner .active + .carousel-item + .carousel-item {
         display: block;
     }
-
     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
         transition: none;
     }
-
     .carousel-inner .carousel-item-next,
     .carousel-inner .carousel-item-prev {
         position: relative;
         transform: translate3d(0, 0, 0);
     }
-
     .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
         position: absolute;
         top: 0;
@@ -184,7 +189,6 @@ body, .btn {
         display: block;
         visibility: visible;
     }
-
     /* left or forward direction */
     .active.carousel-item-left + .carousel-item-next.carousel-item-left,
     .carousel-item-next.carousel-item-left + .carousel-item,
@@ -194,7 +198,6 @@ body, .btn {
         transform: translate3d(-100%, 0, 0);
         visibility: visible;
     }
-
     /* farthest right hidden item must be absolute position for animations */
     .carousel-inner .carousel-item-prev.carousel-item-right {
         position: absolute;
@@ -204,7 +207,6 @@ body, .btn {
         display: block;
         visibility: visible;
     }
-
     /* right or prev direction */
     .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
     .carousel-item-prev.carousel-item-right + .carousel-item,
@@ -221,6 +223,33 @@ body, .btn {
     h2 {
         font-size: 1.5em;
     }
+    .input-group-prepend {
+        font-size: .9em;
+        text-align: left;
+    }
+    .form-control {
+        font-size: 1em;
+    }
+    label {
+        font-size: 1em;
+    }
+    #topBtn {
+        display: none;
+        position: fixed;
+        z-index: 99;
+        font-size: 16px !important;
+        width: 40px;
+        height: 40px;
+        border: none;
+        outline: none;
+        background-color: green;
+        color: white;
+        cursor: pointer;
+        bottom: 10px !important;
+        right: 10px !important;
+        padding: 0px !important;
+        border-radius: 4px;
+    }   
 }
 td, tr, th{
     border-collapse:collapse;
@@ -273,4 +302,20 @@ table{
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
+}
+select {
+    width: 100%;
+    border: 1px solid black;
+    background-color: #E5E0E0;
+    border-radius: 5px;
+}
+.custom-file-input {
+    background-color: #4BCC67;
+}
+.custom-file-label {
+    background-color: #E5E0E0;
+}
+.custom-file {
+    border: 1px solid black;
+    border-radius: 5px;
 }

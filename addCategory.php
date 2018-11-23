@@ -23,8 +23,12 @@ include_once 'controllers/addCategoryCtrl.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
                                     <input type="text" name="nameCategory" class="form-control" id="nameCategory" placeholder="<?= REGISTER_CATEGORY_NAME ?>" required/>
+                                    <?php if (isset($errorList['nameCategory'])) { ?>
+                                        <p class="text-danger"><?= $errorList['nameCategory']; ?></p>
+                                    <?php } ?>
                                 </div>
                             </div>
+                                    <?php else { ?> <div class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></div><?php } ?>
                         </div>
                         <div class="card-footer">
                             <div class="form-group">

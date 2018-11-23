@@ -69,3 +69,38 @@ function PasswordShowFunction() {
         x.type = 'password';
     }
 } 
+// Ajax progressbar
+$(document).ready(function()) {
+    var progressbar = $('#progressbar'), progress = ('#progress');
+    $('form').submit(function(e) {
+        e.preventDefault();
+        $('.alert, label').remove();
+        $(progress).show();
+        var fd = NEW FormData(this);
+        s.ajax({
+            url:$(this).attr('action'),
+            xhr:function() {
+                var xhr = NEW XMLHttpRequest();
+                var total = document.getElementById('imgProduct').files[0].size;
+                xhr.upload.addEventListener('progres',function(e) {
+                    var loaded = Math.round((e.loaded / total)*100);
+                    $(progressbar).text(loaded + '%').width(loaded + '%');
+                });
+                return xhr;
+            },
+            type:'post',
+            processData: false,
+            contentType: false,
+            data: fd,
+            dataType: 'json',
+            success: function() {
+                if (count($errorList) == 0) {
+                    $('upload').prepend('<div class="alert alert-success">'+ REGISTER_FILE + REGISTER_FILE_UPLOAD + '</div>');
+                    $(progress).fadeOut();
+                } else {
+                $('#file').after('<span class="label label-danger"> + REGISTER_ERROR_FILE + </span>');
+                $(progress).hide();
+            }
+        });
+   });
+});

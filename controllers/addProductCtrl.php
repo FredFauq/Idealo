@@ -1,8 +1,8 @@
 <?php
-//on instancie une variable $patient pour l'objet patients
-$category = NEW categories();
-//on instancie une variable $getPatientProfil pour la méthode getPatientProfil
-$getCategoryList = $category->getCategoryList();
+//on instancie une variable $categoryList pour l'objet categories
+$categoryList = NEW categories();
+//on instancie une variable $getCategoryList pour la méthode getCategoryList
+$getCategoryList = $categoryList->getCategoryList();
 // on initialise les variables
 $labelProduct = '';
 $labelCategory = '';
@@ -12,6 +12,7 @@ $barcodeProduct = '';
 $imgProduct = '';
 $search = '';
 $errorList = array();
+$successList = array();
 
 
 //Validation du formulaire
@@ -28,7 +29,7 @@ $errorList = array();
          // OU si le formulaire a été validé mais que il n'y a pas d'élément sélectionné dans le menu déroulant
         // on crée un message d'erreur pour pouvoir l'afficher
         if (!is_nan($_POST['nameCategory'])) {  
-            $category->id = htmlspecialchars($_POST['nameCategory']);
+            $categoryList->id = htmlspecialchars($_POST['nameCategory']);
         } else {
             $formError['nameCategory'] = ERROR_NAME_CATEGORY;
         }
@@ -55,21 +56,55 @@ $errorList = array();
         $errorList['barcodeProduct'] = ERROR_BARCODE_PRODUCT;
     }
     
-      if (!empty($_POST['imgProduct'])) {
-        $imgProduct = htmlspecialchars($_POST['imgProduct']);
+      $target_dir = 'assets/img/';
+$target_file = $target_dir . basename($_FILES['imgProduct']['name']);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST['submit'])) {
+    $check = getimagesize($_FILES['imgProduct']['tmp_name']);
+    if($check !== false) {
+        $successList['imgProduct'] = REGISTER_IMAGE_FILE . $check['mime'] . '.';
     } else {
-        $errorList['imgProduct'] = ERROR_IMG_PRODUCT;
+        $errorList['imgProduct'] = REGISTER_NOT_IMAGE_FILE . '.';
     }
+}
+// on vérifie si le fichier existe
+if (file_exists($target_file)) {
+    $errorList['imgProduct'] = REGISTER_EXIST_FILE . '.';
+}
+// on vérfie la taille du fichier
+if ($_FILES['imgProduct']['size'] > 500000) {
+    $errorList['imgProduct'] = REGISTER_SIZE_FILE . '.';
+}
+// autorisations des extensions de fichier
+if($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg'
+&& $imageFileType != 'gif' ) {
+    $errorList['imgProduct'] = REGISTER_TYPE_FILE . '.';
+}
+// on vérifie que $errorList est différent de 0
+if (count($errorList) != 0) {
+    $errorList['imgProduct'] = REGISTER_FAILED_FILE . '.';
+// si tout est ok , on upload le fichier
+} else {
+    if (move_uploaded_file($_FILES['imgProduct']['tmp_name'], $target_file)) {
+        // on affiche le message de succés
+        $successList['imgProduct'] = REGISTER_FILE. basename( $_FILES['imgProduct']['name']). REGISTER_FILE_UPLOAD . '.';
+    } else {
+        // sinon on affiche le message d'erreur
+        $errorList['imgProduct'] = REGISTER_ERROR_FILE . '.';
+    }
+}
     // S'il n'y a pas d'erreur
     if (count($errorList) == 0) {
-        // on instancie la classe users
-        $user = new products();
+        // on instancie la classe products
+        $product = new products();
         // on hydrate les valeurs
-        $user->labelProduct = $labelProduct;
-        $user->textProduct = $textProduct;
-        $user->priceProduct = $priceProduct;
-        $user->barcodeProduct = $barcodeProduct;
-        $user->imgProduct = $imgProduct;
-        // on éxécute la méthode registerUser
-        $user->addProduct();
+        $product->labelProduct = $labelProduct;
+        $product->textProduct = $textProduct;
+        $product->priceProduct = $priceProduct;
+        $product->barcodeProduct = $barcodeProduct;
+        $product->imgProduct = $imgProduct;
+        // on éxécute la méthode addProduct
+        $product->addProduct();
     }

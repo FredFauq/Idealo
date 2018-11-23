@@ -44,6 +44,9 @@ include_once 'header.php';
             </div>
         </div>    
     </div>
+<!-- debut bouton top page -->
+<button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
+<!-- fin bouton top page -->
 <?php
 } else {
 ?>

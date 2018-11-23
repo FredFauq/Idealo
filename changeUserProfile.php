@@ -143,6 +143,9 @@ include_once 'controllers/changeUserProfileCtrl.php';
         </div>
     </div>
 </div>
+<!-- debut bouton top page -->
+<button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
+<!-- fin bouton top page -->
 <!-- formulaire de modification profil fin -->
 <!-- inclusion du footer -->
 <?php include_once 'footer.php'; ?>
