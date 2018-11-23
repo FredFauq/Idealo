@@ -18,6 +18,7 @@ include_once 'header.php';
                         <div class="input-group justify-content-center mb-3"> 
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><span class="fas fa-key"></span></div>
+                                <label for="password"></label>
                                 <input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="<?= REGISTER_PASSWORD ?>" required/>
                             </div>
                         </div>
@@ -26,6 +27,7 @@ include_once 'header.php';
                         <div class="input-group justify-content-center"> 
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><span class="fas fa-key"></span></div>
+                                <label for="password"></label>
                                 <input type="password" name="passwordVerify" class="form-control form-control-sm" id="passwordVerify" placeholder="<?= REGISTER_PASSWORD_VERIFY ?>" required/>
                             </div>
                         </div>

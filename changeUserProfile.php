@@ -129,7 +129,7 @@ include_once 'controllers/changeUserProfileCtrl.php';
                                 <div class="form-group">
                                     <input class="btn btn-success btn-sm" type="submit" name="update" id="update" value="<?= REGISTER_UPDATE ?>"/>
                                     <a class="btn btn-success btn-sm" type="text" href="changeUserPassword.php" name="toChangeUserPassword" id="toChangeUserPassword">Modification mot de passe</a>
-                                    <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
+                                    <a class="btn btn-success btn-sm" type="text" href="menuAdmin.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
                                 </div>
                             </div>
                         </form>

@@ -47,12 +47,12 @@ define('USER_CONNECTION_ERROR','Erreur lors de la connexion');
 define('USER_REGISTRATION_ERROR','Erreur lors de l\'enregistrement');
 define('USER_CART_ERROR','Un problème est survenu veuillez contacter l\'administrateur du site');
 define('ERROR_LABEL_PRODUCT','Erreur dans la saisie du nom du produit');
-define('ERROR_LABEL_CATEGORY','Erreur dans la saisie du nom de catégorie');
+define('ERROR_NAME_CATEGORY','Erreur dans la saisie du nom de catégorie');
+define('ERROR_NONE_CATEGORY','Veuillez saisir une catégorie');
 define('ERROR_TEXT_PRODUCT','Erreur dans la saisie du texte produit');
 define('ERROR_PRICE_PRODUCT','Erreur dans la saisie du prix du produit');
 define('ERROR_BARCODE_PRODUCT','Erreur dans la saisie du barcode du produit');
 define('ERROR_IMG_PRODUCT','Erreur dans la saisie de l\'image du produit');
-define('ERROR_NAME_CATEGORY','Erreur dans la saisie du nom de catégorie');
 //Menu
 define('NAV_WELCOME',' Bienvenue %s');
 define('NAV_REGISTER',' S\'enregister');
@@ -61,3 +61,6 @@ define('NAV_CONNECT',' Connexion');
 define('NAV_DISCONNECT',' Déconnexion');
 define('NAV_PROFILE',' Votre profil');
 define('NAV_MENU_ADMIN',' Menu administrateur');
+define('NAV_ADMIN','menuAdmin.php');
+define('NAV_INDEX','index.php');
+

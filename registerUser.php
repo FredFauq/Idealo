@@ -11,6 +11,7 @@ include_once 'header.php';
     <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <div class="card text-center">
+        <form class="form-signin" method="POST">
     <div class="card-header">
     
         <h2>
@@ -26,7 +27,6 @@ include_once 'header.php';
         </div>
     </div>
         <div class="card-body">
-        <form class="needs-validation" novalidate action="#" method="POST">
             <div class="form-group row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-6 mb-2">
                     <div class="input-group">
@@ -146,17 +146,21 @@ include_once 'header.php';
              <div class="card-footer">
             <div class="form-group">
                 <input class="btn btn-success btn-sm" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
-                <a class="btn btn-success btn-sm" type="text" href="index.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
+                <a class="btn btn-success btn-sm" type="text" href="<?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { 
+        echo NAV_ADMIN;
+            } else {
+                echo NAV_INDEX;
+            }
+?>" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
             </div>
              </div>
-        </form>
         <?php if ($message != '') { ?>
                 <h3><?= $message ?></h3>
             <?php } ?>
+        </form>
     </div>
     </div>
     </div>
-</div>
 </div>
 <!-- formulaire d'inscription fin -->
 <!-- inclusion du footer -->

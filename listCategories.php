@@ -1,12 +1,12 @@
-<!-- Ajout du header -->
+<!-- inclusion du header -->
 <?php
 include_once 'header.php';
 ?>
 <div class="container-fluid">
     <div class="row  justify-content-center">
         <div class="list offset-2 col-8 text-center">
-                <div class="firstTest offset-2 col-8 text-center">           
-            <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
+            <div class="firstTest offset-2 col-8 text-center">           
+                <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
                     <h3>- Liste des Catégories -</h3>
                     <form class="search" method="post" action="listCategories.php">
                         <input type="text" name="search" placeholder="Recherche..">
@@ -79,26 +79,32 @@ include_once 'header.php';
 
         <a href="menuAdmin.php"><i class="fas fa-sign-out-alt fa-4x"></i></a>
     </div>
-    <?= $_SERVER['PHP_SELF'] ?>
-    <div class="card-header">
-        <h2 class="card-title">
-            <span class="glyphicon glyphicon-bookmark"></span>Accés refusé</h2>
-    </div>
-    <div class="card-body ">
-        <div class="row">
-            <div class="col-12">
-                <p>Vous n'avez pas les droits d'accés à cette page</p>
+<?php } else { ?>
+<!-- Card accés refusé -->
+    <div class="container">
+        <div class="card text-center">
+            <?= $_SERVER['PHP_SELF'] ?>
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="glyphicon glyphicon-bookmark"></span>Accés refusé</h2>
+            </div>
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                        <p>Vous n'avez pas les droits d'accés à cette page</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="menuAdmin.php" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Accueil</a>
             </div>
         </div>
     </div>
-    <div class="card-footer">
-        <a href="index.php" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Accueil</a>
-    </div>
-
     <?php
 }
 ?>
-<!-- Ajout du footer -->
+<!-- Card accés refusé fin -->
+<!-- inclusion du footer -->
 <?php
 include_once 'footer.php';
 ?>

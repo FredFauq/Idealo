@@ -278,6 +278,7 @@ include_once 'header.php';
 <!-- debut bouton top page -->
 <button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
 <!-- fin bouton top page -->
+<!-- inclusion du footer -->
 <?php
 include_once 'footer.php';
 ?>

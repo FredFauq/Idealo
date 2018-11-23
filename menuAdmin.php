@@ -1,4 +1,4 @@
-<!-- Ajout du header -->
+<!-- inclusion du header -->
 <?php
 include_once 'header.php';
 ?>
@@ -47,6 +47,7 @@ include_once 'header.php';
 <?php
 } else {
 ?>
+<div class="container">
     <div class="card-header">
         <h2 class="card-title">
             <span class="glyphicon glyphicon-bookmark"></span>Accés refusé</h2>
@@ -61,10 +62,11 @@ include_once 'header.php';
     <div class="card-footer">
         <a href="index.php" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Accueil</a>
     </div>
+</div>
 <?php
 }
 ?>
-<!-- !Ajout du footer -->
+<!-- inclusion du footer -->
 <?php
 include_once 'footer.php';
 ?>

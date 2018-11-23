@@ -1,4 +1,8 @@
 <?php
+//on instancie une variable $patient pour l'objet patients
+$category = NEW categories();
+//on instancie une variable $getPatientProfil pour la méthode getPatientProfil
+$getCategoryList = $category->getCategoryList();
 // on initialise les variables
 $labelProduct = '';
 $labelCategory = '';
@@ -19,13 +23,19 @@ $errorList = array();
         // sinon on affiche une erreur
         $errorList['labelProduct'] = ERROR_LABEL_PRODUCT;
     }
-
-     if (!empty($_POST['labelCategory'])) {
-        $textProduct = htmlspecialchars($_POST['labelCategory']);
+    // on vérifie que la saisie existe et n'est pas vide
+     if (!empty($_POST['nameCategory'])) {
+         // OU si le formulaire a été validé mais que il n'y a pas d'élément sélectionné dans le menu déroulant
+        // on crée un message d'erreur pour pouvoir l'afficher
+        if (!is_nan($_POST['nameCategory'])) {  
+            $category->id = htmlspecialchars($_POST['nameCategory']);
+        } else {
+            $formError['nameCategory'] = ERROR_NAME_CATEGORY;
+        }
     } else {
-        $errorList['labelCategory'] = ERROR_LABEL_CATEGORY;
-    }
-    
+            $formError['nameCategory'] = ERROR_NONE_CATEGORY;
+        }
+         
     
     if (!empty($_POST['textProduct'])) {
         $textProduct = htmlspecialchars($_POST['textProduct']);
