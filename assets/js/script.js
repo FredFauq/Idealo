@@ -1,16 +1,15 @@
-
 $(document).ready(function() {
   $('#myCarousel').on('slide.bs.carousel', function(e) {
     var $e = $(e.relatedTarget);
     var idx = $e.index();
-    var itemsPerSlide = 4;
+    var itemsPerSlide = 3;
     var totalItems = $('.carousel-item').length;
 
     if (idx >= totalItems - (itemsPerSlide - 1)) {
       var it = itemsPerSlide - (totalItems - idx);
       for (var i = 0; i < it; i++) {
         // append slides to end
-        if (e.direction == 'left') {
+        if (e.direction === 'left') {
           $('.carousel-item')
             .eq(i)
             .appendTo('.carousel-inner');
@@ -22,21 +21,6 @@ $(document).ready(function() {
       }
     }
   });
-});
-// Ajax affichage login ou register
-$(function () {
-    $('#login').blur(function () {
-        $.post('controllers/loginCtrl.php', { loginVerify:$(this).val() } , function (data) {
-            if(data == 1){
-                $('#login').addClass('bg-danger');
-                $('#register').hide();
-            }else{
-               $('#login').removeClass('bg-danger'); 
-                $('#register').show();
-            }
-        },
-        'JSON');
-    });
 });
 
 // Ferme la modal quand l'utilisateur clique en dehors
@@ -62,45 +46,12 @@ function topFunction() {
 }
 // fonction d'affichage du mot de passe par checkbox
 function PasswordShowFunction() {
-    var x = document.getElementById('password');
-    if (x.type === 'password') {
-        x.type = 'text';
+    // déclaration de la variable showPswd 
+    var showPswd = document.getElementById('password');
+    // condition d'affichage ou non du password en texte ou pas
+    if (showPswd.type === 'password') {
+        showPswd.type = 'text';
     } else {
-        x.type = 'password';
+        showPswd.type = 'password';
     }
 } 
-// Ajax progressbar
-$(document).ready(function()) {
-    var progressbar = $('#progressbar'), progress = ('#progress');
-    $('form').submit(function(e) {
-        e.preventDefault();
-        $('.alert, label').remove();
-        $(progress).show();
-        var fd = NEW FormData(this);
-        s.ajax({
-            url:$(this).attr('action'),
-            xhr:function() {
-                var xhr = NEW XMLHttpRequest();
-                var total = document.getElementById('imgProduct').files[0].size;
-                xhr.upload.addEventListener('progres',function(e) {
-                    var loaded = Math.round((e.loaded / total)*100);
-                    $(progressbar).text(loaded + '%').width(loaded + '%');
-                });
-                return xhr;
-            },
-            type:'post',
-            processData: false,
-            contentType: false,
-            data: fd,
-            dataType: 'json',
-            success: function() {
-                if (count($errorList) == 0) {
-                    $('upload').prepend('<div class="alert alert-success">'+ REGISTER_FILE + REGISTER_FILE_UPLOAD + '</div>');
-                    $(progress).fadeOut();
-                } else {
-                $('#file').after('<span class="label label-danger"> + REGISTER_ERROR_FILE + </span>');
-                $(progress).hide();
-            }
-        });
-   });
-});

@@ -22,14 +22,6 @@ include_once 'header.php';
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="listCategory.php" class="btn btn-success btn-sm" role="button" id="board"><img src="/assets/img/icons/icons8-mots-clés-24.png"> <br/>Liste Catégories</a>
-                                <!-- <a href="#" class="btn btn-success" role="button" id="board"><img src="/assets/img/icons/retirer-l'étiquette-24.png"> <br/>Suppression Produit</a> -->
-                                <a href="addCategory.php" class="btn btn-success btn-sm" role="button" id="board"><img src="/assets/img/icons/icons8-ajouter-une-étiquette-24.png"> <br/>Ajout Catègorie</a>
-                                <!-- <a href="#" class="btn btn-success" role="button" id="board"><img src="/assets/img/icons/étiquette-de-prix-24.png"><br/>Modification Produit</a> -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
                                 <a href="listUsers.php" class="btn btn-success btn-sm" role="button" id="board"><span class="fas fa-users"></span> <br/>Liste clients</a>
                                 <!-- <a href="#" class="btn btn-success" role="button" id="board"><span class="fas fa-user-slash"></span> <br/>Suppression clients</a> -->
                                 <a href="registerUser.php" class="btn btn-success btn-sm" role="button" id="board"><span class="fas fa-user-plus"></span> <br/>Ajout client</a>

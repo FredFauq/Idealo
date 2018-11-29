@@ -1,6 +1,6 @@
 <?php
 // on instancie une variable $patient pour la classe patients
-$product = NEW gleola1_Products();
+$product = NEW products();
 
 // condition si le submit existe
 if(isset($_POST['submit'])) {
@@ -29,7 +29,7 @@ if(isset($_POST['search'])) {
         }
 } else {
 // on instancie une variable $getProductList pour la méthode getProductList
-$getProductList = $product->getProductList();
+$getProductList = $product->getProductsList();
     
 }
 // pagination

@@ -1,6 +1,6 @@
 <?php
 
-class users extends database {
+class products extends database {
 
     public $id = 0;
     public $labelProduct = '';
@@ -22,7 +22,7 @@ class users extends database {
     public function checkIfProductExist(){
         $state = false;
         // requête de vérification de la présence du labelProduct par count
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `gleola1_users` WHERE `labelProduct` = :labelProduct';
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `gleola1_products` WHERE `labelProduct` = :labelProduct';
         $result = $this->db->prepare($query);
         $result->bindValue(':labelProduct', $this->labelProduct, PDO::PARAM_STR);
         // On vérifie que la requête s'est bien exécutée
@@ -39,7 +39,7 @@ class users extends database {
      */
     public function addProduct() {
         // requête d'insertion des valeurs d'un produit
-        $query = 'INSERT INTO `gleola1_Products` (`labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`) '
+        $query = 'INSERT INTO `gleola1_products` (`labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`) '
                 . 'VALUES (:labelProduct, :textProduct, :priceProduct, :barcodeProduct, :imgProduct)';
         // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($query);
@@ -58,7 +58,7 @@ class users extends database {
      */
     public function deleteProduct() {
         // requête  de suppression d'un produit
-        $queryDelete = 'DELETE FROM `gleola1_Products` WHERE `id` = :id';
+        $queryDelete = 'DELETE FROM `gleola1_products` WHERE `id` = :id';
         // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($queryDelete);
         $result->bindvalue(':id', $this->id, PDO::PARAM_INT);
@@ -72,7 +72,7 @@ class users extends database {
      */
     public function updateProduct() {
         // Préparation de la requête d'update d'un produit dans la BDD.
-        $queryUpdateProduct = 'UPDATE `gleola1_Products` '
+        $queryUpdateProduct = 'UPDATE `gleola1_products` '
                 . 'SET `labelProduct` = :labelProduct, `textProduct` = :textProduct, `priceProduct` = :priceProduct, `barcodeProduct` = :barcodeProduct '
                 . 'WHERE `id` = :id';
         // si il y a une erreur on renvoie le tableau vide
@@ -95,14 +95,14 @@ class users extends database {
      * Méthode permettant d'obtenir le nombre de produits
      * @return boolean
      */
-    public function numberOfProduct() {
+    public function numberOfResults() {
         // Préparation de la requête pour  obtenir le nombre de produits dans la BDD.
-        $queryNumberOfProduct = 'SELECT COUNT(`id`) AS countResults FROM `gleola1_Products`';
+        $query = 'SELECT COUNT(`id`) AS countResults FROM `gleola1_products`';
         // on recupère les attributs de la classe via $this
-        $result = $this->db->query($queryNumberOfProduct);
+        $queryResult = $this->db->query($query);
         // si il y a une erreur on renvoie le tableau vide
-        if (is_object($queryNumberOfProduct)) {
-            $result = $queryNumberOfProduct->fetch(PDO::FETCH_OBJ);
+        if (is_object($queryResult)) {
+            $result = $queryResult->fetch(PDO::FETCH_OBJ);
         } else {
             $result = false;
         }
@@ -115,15 +115,15 @@ class users extends database {
      */
     public function getProductsList() {
         // on declare un tableau vide
-        getProductsList = array();
-        $query = 'SELECT `id`, `labelProduct`, `priceProduct`, `barcodeProduct` FROM `gleola1_Products` LIMIT 5';
+        $getProductsList = array();
+        $query = 'SELECT `id`, `labelProduct`, `priceProduct`, `barcodeProduct` FROM `gleola1_products` LIMIT 5';
                $result=$this->db->query($query);
          // si il y a une erreur on renvoie le tableau vide
-        if(is_object(getProductsList)) {
-            $result = getProductsList->fetchAll(PDO::FETCH_OBJ);
+        if(is_object($getProductsList)) {
+            $result = $getProductsList->fetchAll(PDO::FETCH_OBJ);
         }
         // on renvoie le résultat
-        return getProductsList;
+        return $getProductsList;
     }
     /**
      * Méthode permettant de rechercher un produit
@@ -133,7 +133,7 @@ class users extends database {
         //Déclaration du tableau vide
         $resultSearch = array();
         // Préparation de la requête pour rechercher un produit dans la BDD.
-        $query = 'SELECT `id`, `labelProduct` FROM `gleola1_Products` WHERE `labelProduct` LIKE :labelProduct';
+        $query = 'SELECT `id`, `labelProduct` FROM `gleola1_products` WHERE `labelProduct` LIKE :labelProduct';
         $searchProduct = $this->db->prepare($query);
         $searchProduct->bindvalue(':labelProduct', '%' . $this->search . '%', PDO::PARAM_STR);
 
@@ -161,7 +161,7 @@ class users extends database {
         $result = array();
         // Préparation de la requête pour obtenir la liste de produit par 5 dans la BDD.
         $queryRresult = $this->db->prepare('SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct` '
-                . 'FROM `gleola1_Products` '
+                . 'FROM `gleola1_products` '
                 . 'LIMIT :limit OFFSET :offset');
         $queryRresult->bindvalue(':limit', $limit, PDO::PARAM_INT);
         $queryRresult->bindvalue(':offset', $offset, PDO::PARAM_INT);

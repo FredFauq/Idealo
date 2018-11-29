@@ -97,7 +97,7 @@ class users extends database {
     public function getUserList() {
         // on declare un tableau vide
         $getUserList = array();
-        $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` LIMIT 10';
+        $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` LIMIT 5';
                $userList=$this->db->query($query);
          // si il y a une erreur on renvoie le tableau vide
         if(is_object($userList)){
@@ -133,7 +133,7 @@ class users extends database {
     public function changeUserProfile() {
            // Préparation de la requête d'update de patient dans la BDD.
            $queryUpdateUser = 'UPDATE `gleola1_users` '
-                   . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail, `login` = :login, `password` = :password '  
+                   . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail, `login` = :login '  
                    . 'WHERE `id` = :id';
            $updateUser = $this->db->prepare($queryUpdateUser);
            // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
@@ -147,7 +147,6 @@ class users extends database {
            $updateUser->bindValue(':phone', $this->phone, PDO::PARAM_STR);
            $updateUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);
            $updateUser->bindValue(':login', $this->login, PDO::PARAM_STR);
-           $updateUser->bindValue(':password', $this->password, PDO::PARAM_STR);
            $updateUser->bindValue(':id', $this->id, PDO::PARAM_INT);
            // On exécute la requête.
            return $updateUser->execute();     
@@ -169,7 +168,7 @@ class users extends database {
      * Méthode pour rechercher un utilisateur
      * @return type
      */
-    public function searchUser() {
+    public function searchUser($search) {
         //Déclaration du tableau vide
        $resultSearch = array();
         $query = 'SELECT `id`, `lastname`, `firstname` FROM `gleola1_users` WHERE `lastname` LIKE :lastname';

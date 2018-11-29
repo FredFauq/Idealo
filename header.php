@@ -98,16 +98,6 @@ include_once 'controllers/headerCtrl.php';
                         ?>
                     </li>
                 </ul>
-                <form class="form-inline">
-                    <div class="input-group">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Recherche" aria-label="Search">
-                    <div class="input-group-btn">
-                        <button class="btn btn-success" type="submit" id = "searchBtn">
-                        <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    </div>
-                </form>
                 <!-- Right -->
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">

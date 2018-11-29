@@ -1,6 +1,4 @@
 <?php
-// inclusion du fichier configuration
-include_once 'configuration.php';
 // inclusion du header
 include_once 'header.php';
 // inclusion du contrôleur
@@ -16,13 +14,13 @@ include_once 'controllers/changeUserProfileCtrl.php';
                     <h2>
                         <?php
                         if (isset($_SESSION['isConnect']) && !empty($_SESSION['role'])) {
-                            if (isset($_POST['update']) && (count($formError) === 0)) {
-                        ?> 
-                        <p id="ok">Le profil a été enregistré</p> 
-    <?php } else { ?>
+                            if (isset($_POST['update']) && (count($errorList) === 0)) {
+                                ?> 
+                                <p id="ok">Le profil a été enregistré</p> 
+                            <?php } else { ?>
                             </h2>
                             <h3 id="status">
-                                Veuillez modifier votre profil SVP
+                                Veuillez modifier le profil SVP
                             </h3>
                         </div>
                         <form class="form-signin" method="POST">
@@ -127,16 +125,32 @@ include_once 'controllers/changeUserProfileCtrl.php';
                             <p>En créant un compte, vous acceptez nos <a href="#">Conditions d'utilisation et confidentialité.</a></p>
                             <div class="card-footer">
                                 <div class="form-group">
-                                    <input class="btn btn-success btn-sm" type="submit" name="update" id="update" value="<?= REGISTER_UPDATE ?>"/>
+                                    <input class="btn btn-success btn-sm" type="submit" name="updateBtn" id="updateBtn" value="<?= REGISTER_UPDATE ?>"/>
+                                    <?php if ((count($errorList) == 0) && (isset($_POST['update']))) { ?> <div class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></div>
+                                        <?php
+                                    }
+                                    if ((count($errorList) != 0) && (isset($_POST['updateBtn']))) {
+                                        ?>
+                                        <div class="text-danger"><?= USER_REGISTRATION_ERROR ?></div>
+                                        <?php
+                                    }
+                                    if ((count($successList) != 0) && (isset($_POST['updateBtn']))) {
+                                        ?>
+                                        <div class="text-danger"><?= USER_REGISTRATION_SUCCESS ?></div>
+                                        <?php
+                                    }
+                                    ?>
                                     <a class="btn btn-success btn-sm" type="text" href="changeUserPassword.php" name="toChangeUserPassword" id="toChangeUserPassword">Modification mot de passe</a>
-                                    <a class="btn btn-success btn-sm" type="text" href="menuAdmin.php" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
+                                    <a class="btn btn-success btn-sm" type="text" href="<?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+                                        echo 'menuAdmin.php';
+                                        } else {
+                                            echo 'index.php';
+                                            }?>" name="toIndex" id="toIndex"><i class="fas fa-share-square"></i></a>
                                 </div>
                             </div>
                         </form>
-                        <?php if ($message != '') { ?>
-                            <h3><?= $message ?></h3>
-                        <?php } ?>
-                    <?php }
+                    <?php
+                    }
                 }
                 ?>
             </div>

@@ -1,8 +1,14 @@
 <?php
 // on instancie une variable $patient pour l'objet patients
 $users = NEW users();
-// on récupére l'id dans la variable
-$users->id = $_SESSION['id'];
+// on récupére l'id 
+
+if(!empty($_GET['id']) && $_SESSION['role'] == 2){
+$users->id = $_GET['id']; 
+} else {
+    $users->id = $_SESSION['id'];
+}
+
 // on instancie une variable $getPatientProfil pour la méthode getPatientProfil
 $getUserProfileByID = $users->getUserProfileByID();
 // on instancie une variable $changePatientProfil pour la méthode changePatientProfil
@@ -13,134 +19,126 @@ $regexText = '/^[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂ�
 // regex téléphone
 $regexPhone = '/^(\d){10}$/';
 // regex code postal
-$regexZipcode = '/^(\d){6}$/';
+$regexZipcode = '/^(\d){5}$/';
 // regex login
-$regexLogin = '/^[a-zA-Z0-9_\- @éèàùëïôê]{6,20}$/';
+$regexLogin = '/^[a-zA-Z0-9_\- àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ°]{2,20}$/';
 // regex pour l'adresse mail (autorisation chiffres lettres, obligation de l'@ et .)
 $regexMail = '/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/';
-// déclaration de la variable $message
-$message= '';
 // déclaration du tableau d'erreur
-$formError = array();
+$errorList = array();
+$successList = array();
 
-if (isset($_POST['update'])) {
-    //vérification par double condition
     //Si le parametre existe
-         if (isset($_POST['lastname'])) {
-             //si le parametre passe la regex
-        if (preg_match($regexText, $_POST['lastname'])) {
-            // sécurisation par htmlspecialchars du parametre transmis
+     if (isset($_POST['lastname'])) {
+            // Conversion des caractères speciaux via htmlspecialchars = protection
             $users->lastname = htmlspecialchars($_POST['lastname']);
-        } else {
-            //Sinon afficher le message
-            $formError['lastname'] = ERROR_LASTNAME;
-        }
-    } else {
-        //Sinon afficher le message
+             // Test que la variable n'est pas égale à la regeX
+        if (!preg_match($regexText, $_POST['lastname'])) {
+            // afficher le message d'erreur
+            $errorList['lastname'] = ERROR_LASTNAME;
+        } 
+        // On test si $users->lastname est vide
+        if (empty($users->lastname)) {
+        // je crée le message d'erreur suivant dans le tableau d'erreur
         $formError['lastname'] = ERROR_EMPTY_FIELD;
+        }
     }
     //vérification par double condition
     if (isset($_POST['firstname'])) {
-        if (preg_match($regexText, $_POST['firstname'])) {
+        // Conversion des caractères speciaux via htmlspecialchars = protection
             $users->firstname = htmlspecialchars($_POST['firstname']);
-        } else {
-            $formError['firstname'] = ERROR_FIRSTNAME;
-        }
-    } else {
+             // Test que la variable n'est pas égale à la regeX
+        if (!preg_match($regexText, $_POST['firstname'])) {
+            // afficher le message d'erreur
+            $errorList['firstname'] = ERROR_FIRSTNAME;
+        } 
+        // On test si $users->lastname est vide
+        if (empty($users->firstname)) {
+        // je crée le message d'erreur suivant dans le tableau d'erreur
         $formError['firstname'] = ERROR_EMPTY_FIELD;
+        }
     }
     //vérification par double condition
     if (isset($_POST['birthdate'])) {
             $users->birthdate = htmlspecialchars($_POST['birthdate']);
-            } else {
-        $formError['birthdate'] = ERROR_EMPTY_FIELD;
+        if (empty($_POST['birthdate']))  {       
+        $errorList['birthdate'] = ERROR_EMPTY_FIELD;
+        }
     }
     //vérification par double condition
     if (isset($_POST['address'])) {
             $users->address = htmlspecialchars($_POST['address']);
-    } else {
-        $formError['phone'] = ERROR_EMPTY_FIELD;
+        if (empty($_POST['address'])) {
+        $errorList['address'] = ERROR_EMPTY_FIELD;
     }
-    
-    //vérification par double condition
+    }
+    //vérification par  conditions
     if (isset($_POST['zipcode'])) {
-        if (preg_match($regexZipcode, $_POST['zipcode'])) {
             $users->zipcode = htmlspecialchars($_POST['zipcode']);
-        } else {
-            $formError['zipcode'] = ERROR_ZIPCODE;
+        if (!preg_match($regexZipcode, $_POST['zipcode'])) {
+                    $errorList['zipcode'] = ERROR_ZIPCODE;
         }
-    } else {
-        $formError['zipcode'] = ERROR_EMPTY_FIELD;
+    if (empty($_POST['zipcode'])){
+        $errorList['zipcode'] = ERROR_EMPTY_FIELD;
     }
-    //vérification par double condition
+    }
+    //vérification par condition
     if (isset($_POST['city'])) {
-        if (preg_match($regexText, $_POST['city'])) {
             $users->city = htmlspecialchars($_POST['city']);
-        } else {
-            $formError['city'] = ERROR_CITY;
+        if (!preg_match($regexText, $_POST['city'])) {
+                 $errorList['city'] = ERROR_CITY;
         }
-    } else {
-        $formError['city'] = ERROR_EMPTY_FIELD;
+    if (empty($_POST['city'])){
+        $errorList['city'] = ERROR_EMPTY_FIELD;
     }
-    
-     //vérification par double condition
+    }
+     //vérification par conditions
     if (isset($_POST['country'])) {
-        if (preg_match($regexText, $_POST['country'])) {
             $users->country = htmlspecialchars($_POST['country']);
-        } else {
-            $formError['country'] = ERROR_COUNTRY;
+        if (!preg_match($regexText, $_POST['country'])) {
+               $errorList['country'] = ERROR_COUNTRY;
         }
-    } else {
-        $formError['country'] = ERROR_EMPTY_FIELD;
+        if (empty($_POST['country'])){
+        $errorList['country'] = ERROR_EMPTY_FIELD;
+        }
     }
-    
-    //vérification par double condition
+    //vérification par conditions
      if (isset($_POST['mail'])) {
-        if (preg_match($regexMail, $_POST['mail'])) {
             $users->mail = htmlspecialchars($_POST['mail']);
-        } else {
-            $formError['mail'] = ERROR_MAIL;
+        if (!preg_match($regexMail, $_POST['mail'])) {
+            $errorList['mail'] = ERROR_MAIL;
         }
-    } else {
-        $formError['mail'] = ERROR_EMPTY_FIELD;
-    }
-    //vérification par double condition
+        if (empty($_POST['mail'])){
+        $errorList['mail'] = ERROR_EMPTY_FIELD;
+        }
+     }
+    //vérification par conditions
      if (isset($_POST['phone'])) {
-        if (preg_match($regexPhone, $_POST['phone'])) {
             $users->phone = htmlspecialchars($_POST['phone']);
-        } else {
-            $formError['phone'] = ERROR_PHONE;
+        if (!preg_match($regexPhone, $_POST['phone'])) {
+            $errorList['phone'] = ERROR_PHONE;
         }
-    } else {
-        $formError['phone'] = ERROR_EMPTY_FIELD;
-    }
-    
-     //vérification par double condition
+        if (empty($_POST['phone'])){
+        $errorList['phone'] = ERROR_EMPTY_FIELD;
+        }
+     }
+     //vérification par conditions
      if (isset($_POST['login'])) {
-        if (preg_match($regexLogin, $_POST['login'])) {
             $users->login = htmlspecialchars($_POST['login']);
-        } else {
-            $formError['login'] = ERROR_LOGIN;
+        if (!preg_match($regexLogin, $_POST['login'])) {
+            $errorList['login'] = ERROR_LOGIN;
         }
-    } else {
-        $formError['phone'] = ERROR_EMPTY_FIELD;
-    }
-    
-    //vérification par  condition
-     if (isset($_POST['password'])) {
-            $users->password = htmlspecialchars($_POST['password']);
-            $formError['password'] = ERROR_PASSWORD;
-    } else {
-        $formError['password'] = ERROR_EMPTY_FIELD;
-    }
-    
-    //vérification qu'il n'y a pas d'erreur par la fonction count
-    if (count($formError) == 0){
-        $users->id = $_POST['id'];
-        // si la méthode ne renvoie pas d'instance afficher le message
+        if (empty($_POST['login'])){
+        $errorList['login'] = ERROR_EMPTY_FIELD;
+        }
+     }
+    //vérification qu'il n'y a pas d'erreur par la fonction count et que le bouton a été activé
+    if (count($errorList) == 0 && isset($_POST['updateBtn'])){
+        $successList['updateBtn'] = USER_REGISTRATION_SUCCESS;
+        // si la méthode ne renvoie pas d'instance, afficher le message
         if (!$users->changeUserProfile()){
-            $formError['update'] = 'Il y a eu un problème';
+            $errorList['updateBtn'] = USER_REGISTRATION_ERROR;
         }
     } 
-}
+
 ?>
