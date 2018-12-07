@@ -196,7 +196,7 @@ body, .btn {
   .carousel-inner .carousel-item-prev.carousel-item-right {
     position: absolute;
     top: 0;
-    left: 0;
+    left: +33.33%;
     z-index: -1;
     display: block;
     visibility: visible;
@@ -259,7 +259,7 @@ table{
     border-radius: 15px;
 }
 .card-body .btn:not(.btn-block) {
-    width: 120px
+    width: 120px;
     margin-bottom: 10px;
 }
 .card-header {

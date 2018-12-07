@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#myCarousel').on('slide.bs.carousel', function(e) {
     var $e = $(e.relatedTarget);
     var idx = $e.index();
-    var itemsPerSlide = 3;
+    var itemsPerSlide = 4;
     var totalItems = $('.carousel-item').length;
 
     if (idx >= totalItems - (itemsPerSlide - 1)) {
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 // Ferme la modal quand l'utilisateur clique en dehors
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
         modal.style.display = 'none';
     }
 }
@@ -55,3 +55,25 @@ function PasswordShowFunction() {
         showPswd.type = 'password';
     }
 } 
+//
+//
+//$('#myCarousel').carousel({
+//  interval: 4000
+//})
+//
+//$('.carousel .item').each(function(){
+//  var next = $(this).next();
+//  if (!next.length) {
+//    next = $(this).siblings(':first');
+//  }
+//  next.children(':first-child').clone().appendTo($(this));
+//  
+//  for (var i=0;i<2;i++) {
+//    next=next.next();
+//    if (!next.length) {
+//    	next = $(this).siblings(':first');
+//  	}
+//    
+//    next.children(':first-child').clone().appendTo($(this));
+//  }
+//});
