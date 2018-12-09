@@ -3,15 +3,17 @@
 $product = NEW products();
 
 // condition si le submit existe
-if(isset($_POST['submit'])) {
+if(isset($_POST['submitDelete'])) {
     // condition si l'id existe
     if (isset($_GET['id'])) {
         // récupération de l'id transmis par l'url
     $product->id = $_GET['id'];
     // instanciation de la méthode
     $deleteProduct = $product->deleteProduct();
+    }
 }
-}
+$getProductsList = $product->getProductsList();
+
 if(isset($_POST['search'])) {
     $product->search = $_POST['search'];
      //Déclaration de la variable $search qui est égale a $_POST['nameAsked'

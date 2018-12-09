@@ -15,12 +15,15 @@ $priceProduct = '';
 $barcodeProduct = '';
 $imgProduct = '';
 $search = '';
+$maxwidth = 800;
+$maxheight = 600;
 // on déclare les variables de tableau
 $errorList = array();
 $successList = array();
+$image_sizes = array();
 
 // déclaration de la regex pour les textes
-$regexText = '/^[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ° \'\-]+$/';
+$regexText = '/^[0-9A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ° %\+!:?,.;\/\(\)*€$£¤\[\]\"\'\-]+$/';
 //regex pour prix avec 2 décimales 
 $regexPrice = '/[0-9]*\.[0-9]{2}/';
 // regex pour le code barre EAN13
@@ -50,8 +53,6 @@ if(isset($_POST['registerProduct'])) {
      if (!empty($_POST['nameCategory']) && !is_nan($_POST['nameCategory'])) {
             // on sécurise par htmlspecialchars
             $nameCategory = htmlspecialchars($_POST['nameCategory']);
-            // sinon on affiche le message d'erreur
-            $errorList['nameCategory'] = ERROR_NAME_CATEGORY;
             // si le champ est vide
             if (empty($_POST['nameCategory'])) {
             // sinon on affiche le message d'erreur
@@ -62,13 +63,8 @@ if(isset($_POST['registerProduct'])) {
     if (!empty($_POST['textProduct'])) {
         // on sécurise par htmlspecialchars
         $textProduct = htmlspecialchars($_POST['textProduct']);
-        // si on passe pas la regex du texte
-        if(!preg_match($regexText, $_POST['textProduct'])) {
-        // on affiche le message d'erreur
-        $errorList['textProduct'] = ERROR_TEXT_PRODUCT;
-        }
         // si le champ est vide
-        if (empty($_POST['priceProduct'])) {
+        if (empty($_POST['textProduct'])) {
         // sinon on affiche le message d'erreur
         $errorList['textProduct'] = ERROR_EMPTY_FIELD;
         }
@@ -80,14 +76,14 @@ if(isset($_POST['registerProduct'])) {
          // si on passe pas la regex du prix  
          if(!preg_match($regexPrice, $_POST['priceProduct'])) {
          // on affiche me message d'erreur
-         }
         $errorList['priceProduct'] = ERROR_PRICE_PRODUCT;
-        }
+         }
       // si le champ est vide
      if (empty($_POST['priceProduct'])) {
          // on affiche le message d'erreur
         $errorList['priceProduct'] = ERROR_EMPTY_FIELD;
      }
+        }
      // on vérifie que la saisie existe et n'est pas vide
       if (!empty($_POST['barcodeProduct'])) {
          // on sécurise par htmlspecialchars
@@ -118,6 +114,10 @@ if(isset($_POST['registerProduct'])) {
           // on défini le message d'erreur
           $errorList['imgProduct'] = ERROR_EXTENSION;
           } else { 
+              $image_sizes = getimagesize($_FILES['imgProduct']['tmp_name']);
+                if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight) {
+                    $errorList['imgProduct'] = 'Image trop grande';
+                }
               // si le fichier est téléchargé
               if (move_uploaded_file($imgUpload['tmp_name'], $end_path)) {
                   // on récupère le fichier 

@@ -1,5 +1,9 @@
 <?php
+/* On crée une class users qui hérite de la classe database via extends
+ * La classe users va nous permettre d'accéder à la table users
+ */
 class users extends database {
+    // Création d'attributs qui correspondent à chacun des champs de la table users
     public $id = 0;
     public $lastname = '';
     public $firstname = '';
@@ -13,8 +17,9 @@ class users extends database {
     public $login = '';
     public $password = '';
     public $search = '';
-    
+    // on crée une methode magique __construct()
     public function __construct() {
+        // On appelle le __construct() du parent via "parent::""
         parent::__construct();
         $this->dbConnect();
     }
@@ -26,7 +31,7 @@ class users extends database {
         // requête d'insertion des valeurs de l'enregistrement
         $query = 'INSERT INTO `gleola1_users` (`lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone`, `login`, `password`, `idRole`) '
                 . 'VALUES (:lastname, :firstname, :birthdate, :address, :zipcode, :city, :country, :mail, :phone, :login, :password, 1)';
-        // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
+        // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($query);
         $result->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
         $result->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -39,7 +44,7 @@ class users extends database {
         $result->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $result->bindValue(':login', $this->login, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);
-        // On exécute la requête.
+        // on utilise la méthode execute() via un return
         return $result->execute();
     }
     
@@ -62,14 +67,16 @@ class users extends database {
             $selectResult = $result->fetch(PDO::FETCH_OBJ);
             // On vérifie que l'on a bien trouvé un utilisateur
             if (is_object($selectResult)) { 
-                // On hydrate
+                // dans ce cas on hydrate
                 $this->login = $selectResult->login;
                 $this->password = $selectResult->password;
                 $this->role = $selectResult->role;
                 $this->id = $selectResult->id;
+                // on défini la variable $state égale à vrai
                 $state = true;
             }
         }
+        // on retourne la variable $state (booléen)
         return $state;
     }
 /**
@@ -88,6 +95,7 @@ class users extends database {
             $selectResult = $result->fetch(PDO::FETCH_OBJ);
             $state = $selectResult->count;
         }
+        // on retourne la variable $state (booléen)
         return $state;
     }
     /**
@@ -99,11 +107,12 @@ class users extends database {
         $getUserList = array();
         $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `mail`, `phone` FROM `gleola1_users` LIMIT 5';
                $userList=$this->db->query($query);
-         // si il y a une erreur on renvoie le tableau vide
+         // on vérifie l'instanciation de $userList
         if(is_object($userList)){
+            // La fonction fetchAll permet d'afficher toutes les données de la requète dans un tableau d'objet via le paramètre (PDO::FETCH_OBJ)
             $getUserList=$userList->fetchAll(PDO::FETCH_OBJ);
         }
-        // on renvoie le résultat
+        // on retourne le résultat
         return $getUserList;
     }
     /**
@@ -117,6 +126,7 @@ class users extends database {
          $userProfile->bindValue(':id', $this->id, PDO::PARAM_INT);
            // on utilise la méthode execute() via un return
        $userProfile->execute();
+            // on vérifie l'instanciation de $userProfile
             if (is_object($userProfile)){
                 /* On crée la variable $getUserProfilByID qui va nous permettre de retourner le resultat 
              * La fonction fetch permet d'afficher la ligne de la requète que je souhaite récupérer
@@ -136,7 +146,7 @@ class users extends database {
                    . 'SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `address` = :address, `zipcode` = :zipcode, `city` = :city, `country` = :country, `phone` = :phone, `mail` = :mail, `login` = :login '  
                    . 'WHERE `id` = :id';
            $updateUser = $this->db->prepare($queryUpdateUser);
-           // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
+           // on attribue les valeurs via bindValue  et on recupère les attributs de la classe via $this
            $updateUser->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
            $updateUser->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
            $updateUser->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
@@ -171,20 +181,26 @@ class users extends database {
     public function searchUser($search) {
         //Déclaration du tableau vide
        $resultSearch = array();
+       // définition de la variable contenant la requête
         $query = 'SELECT `id`, `lastname`, `firstname` FROM `gleola1_users` WHERE `lastname` LIKE :lastname';
+        // 
         $searchUser = $this->db->prepare($query);
+        // on attribue au marqueur nominatif lastname la valeur de $search
         $searchUser->bindvalue(':lastname', '%' . $this->search . '%', PDO::PARAM_STR);
     
-         // si il y a une erreur on renvoie le tableau vide
+         // on vérifie l'instanciation de $searchUser
         if(is_object($searchUser)){
            if ($searchUser->execute()) {
+            // La fonction fetchAll permet d'afficher toutes les données de la requète dans un tableau d'objet via le paramètre (PDO::
             $resultSearch = $searchUser->fetchAll(PDO::FETCH_OBJ);
         } else {
+            // si le tableau est vide on défini la variable de la recherche à faux (booléen)
             $resultSearch = FALSE;
         }
         // on renvoie le résultat
         return $resultSearch;
     } else {
+        // si le tableau est vide on défini la variable de la recherche à faux (booléen)
         $resultSearch = FALSE;
     }
     return $resultSearch;
@@ -195,6 +211,7 @@ class users extends database {
      */
     public function numberOfResults() {
         $queryResult = $this->db->query('SELECT COUNT(`id`) AS countResults FROM `gleola1_users`');
+        // si il y a bien une instance de $queryResult
         if (is_object($queryResult)) {
             $result = $queryResult->fetch(PDO::FETCH_OBJ);
         } else {
@@ -209,20 +226,28 @@ class users extends database {
     public function getUsersListByN($limit, $offset) {
     // initialisation du tableau $result
     $result = array();
-    $queryRresult = $this->db->prepare('SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `phone`, `mail` '
+    $queryResult = $this->db->prepare('SELECT `id`, `lastname`, `firstname`, `birthdate`, `address`, `zipcode`, `city`, `country`, `phone`, `mail` '
             . 'FROM `gleola1_users` '
             . 'LIMIT :limit OFFSET :offset');
-    $queryRresult->bindvalue(':limit', $limit, PDO::PARAM_INT);
-    $queryRresult->bindvalue(':offset', $offset, PDO::PARAM_INT);
-    if ($queryRresult->execute()){
-        if (is_object($queryRresult)){
-            $result = $queryRresult->fetchAll(PDO::FETCH_OBJ);
+    // on attribue au marqueur nominatif limit la valeur de $limit
+    $queryResult->bindvalue(':limit', $limit, PDO::PARAM_INT);
+    // on attribue au marqueur nominatif offset la valeur de $offset
+    $queryResult->bindvalue(':offset', $offset, PDO::PARAM_INT);
+    // si la méthode execute() fonctionne
+    if ($queryResult->execute()){
+        // si il y a bien une instance de $queryResult
+        if (is_object($queryResult)){
+            // on récupére une instance d'un tableau des résultats par le fetchAll
+            $result = $queryResult->fetchAll(PDO::FETCH_OBJ);
         } else {
+            // sinon on défini la variable $result à faux (booléen)
             $result = false;
         }
     } else {
+        // on défini la variable $result égale à faux (booléen)
      $result = false;
     }
+    // on retourne le résultat (booléen) de $result
     return $result;
     }
 }

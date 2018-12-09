@@ -25,7 +25,7 @@ define('REGISTER_LABEL_CATEGORY','Nom de catégorie');
 define('REGISTER_TEXT_PRODUCT','Texte produit');
 define('REGISTER_PRICE_PRODUCT','Prix produit');
 define('REGISTER_BARCODE_PRODUCT','Code barre produit');
-define('REGISTER_IMG_PRODUCT','Image du produit');
+define('REGISTER_IMG_PRODUCT','Image (jpg,jpeg,png,gif,1Mo max)');
 define('REGISTER_CATEGORY_NAME','Nom de catégorie');
 define('REGISTER_IMAGE_FILE','Le fichier est une image');
 define('REGISTER_NOT_IMAGE_FILE','Le fichier n\'est pas une image');

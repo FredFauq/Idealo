@@ -9,7 +9,7 @@ include_once 'header.php';
 <!-- formulaire d'inscription début -->
 <div class="container">
     <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
     <div class="card text-center">
         <form class="form-signin" method="POST">
     <div class="card-header">
@@ -183,9 +183,10 @@ include_once 'header.php';
              <div class="card-footer">
             <div class="form-group">
                 <input class="btn btn-success btn-sm" type="submit" name="register" id="register" value="<?= REGISTER_SUBMIT ?>"/>
-            <?php  if (count($errorList) == 0) { ?> <div class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></div>
+            <?php  if (count($errorList) == 0 && isset($_POST['register'])) { ?> <div class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></div>
             <?php 
-             } else { 
+             }
+             if (count($errorList) != 0 && isset($_POST['register'])) { 
               ?>  
             <div class="text-danger"><?= REGISTRATION_ERROR ?></div>
             <?php
@@ -206,5 +207,8 @@ include_once 'header.php';
     </div>
 </div>
 <!-- formulaire d'inscription fin -->
+ <!-- debut bouton top page -->
+    <button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
+    <!-- fin bouton top page -->
 <!-- inclusion du footer -->
 <?php include_once 'footer.php'; ?>

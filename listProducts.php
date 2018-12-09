@@ -23,7 +23,7 @@ include_once 'controllers/listProductsCtrl.php';
                         if (isset($getProductsList)) {
                             if ($getProductsList === false) {
                                 ?>
-                                <p>Il y a eu un problème</p>S
+                                <p>Il y a eu un problème</p>
                                 <?php
                             } elseif (count($getProductsList) === 0) {
                                 ?>
@@ -53,14 +53,14 @@ include_once 'controllers/listProductsCtrl.php';
                                                 <tr>
                                                     <td><?= $product->id ?></td>
                                                     <td><?= $product->labelProduct ?></td>
-                                                    <td><?= $product->labelProduct ?></td>
+                                                    <td><?= $product->nameCategory ?></td>
                                                     <td><?= $product->textProduct ?></td>
                                                     <td><?= $product->priceProduct ?></td>
                                                     <td><?= $product->barcodeProduct ?></td>
                                                     <td><?= $product->imgProduct ?></td>
                                                     <td><a href="updateProduct.php?id=<?= $product->id ?>"><img src="/assets/img/icons/icons8-ajouter-une-étiquette-24.png"></i></a></td>
                                                     <td><form method = "POST" action="?id=<?= $product->id ?>">
-                                                            <button type="submit" value="" name="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
+                                                            <button type="submit" value="" name="submitDelete" class="btn btn-danger"><i class="far fa-trash-alt"></i>
                                                             </button>
                                                         </form>
                                                     </td>
@@ -102,6 +102,9 @@ include_once 'controllers/listProductsCtrl.php';
             </div>
         </div>
     </div>
+ <!-- debut bouton top page -->
+    <button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
+    <!-- fin bouton top page -->
 <?php } else { ?>
     <!-- Card accés refusé -->
     <div class="container">

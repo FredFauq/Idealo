@@ -9,7 +9,7 @@ include_once 'controllers/addProductCtrl.php';
 <!-- formulaire d'ajout produit début -->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <!--  contenu card -->
             <!-- formulaire d'ajout produit avec format d'envoi de donnée enctype -->
             <form action="addProduct.php" method="POST" enctype="multipart/form-data">
@@ -76,6 +76,8 @@ include_once 'controllers/addProductCtrl.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="far fa-image"></i></span>
                                     <div class="custom-file" id="upload">
+                                        <!-- limitation de la taille à 1 Mo du fichier -->
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
                                         <input type="file" class="custom-file-input"  name="imgProduct" id="imgProduct"/>
                                         <label class="custom-file-label" for="imgProduct"><?= REGISTER_IMG_PRODUCT ?></label>
                                         <?php if ((!empty($errorList['imgProduct']) && (count($errorList) == 0))) { ?>
@@ -86,12 +88,6 @@ include_once 'controllers/addProductCtrl.php';
                                         <?php } ?>
                                     </div>
                                 </div>
-                                        <!-- div contenant la progress bar d'upload fichier -->
-<!--                                        <div style="display:none" id="progress" class="progress">
-                                            <div  id="progressbar" class="progress-bar" role="progress-bar">
-                                            </div>
-                                        </div>
-                                         fin de la progress bar -->
                             </div>
                             <div class="card-footer">
                                 <div class="form-group">

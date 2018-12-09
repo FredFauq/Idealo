@@ -1,7 +1,9 @@
 <?php
-
+/* On crée une class products qui hérite de la classe database via extends
+ * La classe products va nous permettre d'accéder à la table products
+ */
 class products extends database {
-
+// Création d'attributs qui correspondent à chacun des champs de la table products
     public $id = 0;
     public $labelProduct = '';
     public $textProduct = '';
@@ -9,8 +11,9 @@ class products extends database {
     public $barcodeProduct = '';
     public $imgProduct = '';
     public $search = '';
-
+    // on crée une methode magique __construct()
     public function __construct() {
+        // On appelle le __construct() du parent via "parent::""
         parent::__construct();
         $this->dbConnect();
     }
@@ -24,6 +27,7 @@ class products extends database {
         // requête de vérification de la présence du labelProduct par count
         $query = 'SELECT COUNT(`id`) AS `count` FROM `gleola1_products` WHERE `labelProduct` = :labelProduct';
         $result = $this->db->prepare($query);
+        // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result->bindValue(':labelProduct', $this->labelProduct, PDO::PARAM_STR);
         // On vérifie que la requête s'est bien exécutée
         if ($result->execute()) {
@@ -41,14 +45,14 @@ class products extends database {
         // requête d'insertion des valeurs d'un produit
         $query = 'INSERT INTO `gleola1_products` (`labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`) '
                 . 'VALUES (:labelProduct, :textProduct, :priceProduct, :barcodeProduct, :imgProduct)';
-        // on attribue les valeurs via bindValue des marqueurs nominatifs et on recupère les attributs de la classe via $this
         $result = $this->db->prepare($query);
+        // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result->bindValue(':labelProduct', $this->labelProduct, PDO::PARAM_STR);
         $result->bindValue(':textProduct', $this->textProduct, PDO::PARAM_STR);
         $result->bindValue(':priceProduct', $this->priceProduct, PDO::PARAM_STR);
         $result->bindValue(':barcodeProduct', $this->barcodeProduct, PDO::PARAM_STR);
         $result->bindValue(':imgProduct', $this->imgProduct, PDO::PARAM_STR);
-        // On exécute la requête.
+        // On exécute la requête en utilisant la méthode execute() via un return
         return $result->execute();
     }
 
@@ -75,7 +79,7 @@ class products extends database {
         $queryUpdateProduct = 'UPDATE `gleola1_products` '
                 . 'SET `labelProduct` = :labelProduct, `textProduct` = :textProduct, `priceProduct` = :priceProduct, `barcodeProduct` = :barcodeProduct '
                 . 'WHERE `id` = :id';
-        // si il y a une erreur on renvoie le tableau vide
+        // on vérifie l'instanciation de $queryUpdateProduct
         if (is_object($queryUpdateProduct)) {
             $result = $this->db->prepare($queryUpdateProduct);
             // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
@@ -100,7 +104,7 @@ class products extends database {
         $query = 'SELECT COUNT(`id`) AS countResults FROM `gleola1_products`';
         // on recupère les attributs de la classe via $this
         $queryResult = $this->db->query($query);
-        // si il y a une erreur on renvoie le tableau vide
+        // on vérifie l'instanciation de $queryResult
         if (is_object($queryResult)) {
             $result = $queryResult->fetch(PDO::FETCH_OBJ);
         } else {
@@ -115,12 +119,12 @@ class products extends database {
      */
     public function getProductsList() {
         // on declare un tableau vide
-        $getProductsList = array();
-        $query = 'SELECT `id`, `labelProduct`, `priceProduct`, `barcodeProduct` FROM `gleola1_products` LIMIT 5';
-               $result=$this->db->query($query);
-         // si il y a une erreur on renvoie le tableau vide
-        if(is_object($getProductsList)) {
-            $result = $getProductsList->fetchAll(PDO::FETCH_OBJ);
+        $productsList = array();
+        $query = 'SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct` FROM `gleola1_products` LIMIT 5';
+               $productsList = $this->db->query($query);
+         // on vérifie l'instanciation de $getProductsList
+        if(is_object($productsList)) {
+            $getProductsList = $productsList->fetchAll(PDO::FETCH_OBJ);
         }
         // on renvoie le résultat
         return $getProductsList;
@@ -137,7 +141,7 @@ class products extends database {
         $searchProduct = $this->db->prepare($query);
         $searchProduct->bindvalue(':labelProduct', '%' . $this->search . '%', PDO::PARAM_STR);
 
-        // si il y a une erreur on renvoie le tableau vide
+        // on vérifie l'instanciation de $searchProduct
         if (is_object($searchProduct)) {
             if ($searchProduct->execute()) {
                 $searchProduct = $searchProduct->fetchAll(PDO::FETCH_OBJ);
@@ -166,7 +170,7 @@ class products extends database {
         $queryRresult->bindvalue(':limit', $limit, PDO::PARAM_INT);
         $queryRresult->bindvalue(':offset', $offset, PDO::PARAM_INT);
         if ($queryRresult->execute()) {
-            // si il y a une erreur on renvoie le tableau vide
+            // on vérifie l'instanciation de $queryRresult
             if (is_object($queryRresult)) {
                 $result = $queryRresult->fetchAll(PDO::FETCH_OBJ);
             } else {

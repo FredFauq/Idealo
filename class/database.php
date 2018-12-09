@@ -4,13 +4,13 @@
  * Classe permettant de se connecter à la base de données MYSQL
  */
 class database {
-
+// définition des accessibilité inter classe des différentes propriétés
     protected $db;
     private $host = '';
     private $login = '';
     private $password = '';
     private $dbname = '';
-
+    // on crée une methode magique __construct()
     public function __construct() {
         $this->host = HOST;
         $this->login = LOGIN;

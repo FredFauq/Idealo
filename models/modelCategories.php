@@ -1,12 +1,15 @@
 <?php
-
+/* On crée une class categories qui hérite de la classe database via extends
+ * La classe categories va nous permettre d'accéder à la table categories
+ */
 class categories extends database {
-
+// Création d'attributs qui correspondent à chacun des champs de la table categories
     public $id = 0;
     public $nameCategory = '';
     public $search = '';
-
+// on crée une methode magique __construct()
     public function __construct() {
+        // On appelle le __construct() du parent via "parent::""
         parent::__construct();
         $this->dbConnect();
     }
@@ -19,6 +22,7 @@ class categories extends database {
         // requête de vérification de la présence du nameCategory par count
         $query = 'SELECT COUNT(`id`) AS `count` FROM `gleola1_categories` WHERE `nameCategory` = :nameCategory';
         $result = $this->db->prepare($query);
+        // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result->bindValue(':nameCategory', $this->nameCategory, PDO::PARAM_STR);
         // On vérifie que la requête s'est bien exécutée
         if ($result->execute()) {
@@ -35,10 +39,12 @@ class categories extends database {
     public function getCategoryList() {
         // on declare un tableau vide
         $getCategoryList = array();
+        // définition de la variable contenant la requête
         $query = 'SELECT `id`, `nameCategory` FROM `gleola1_categories` LIMIT 10';
                $categoryList=$this->db->query($query);
-         // si il y a une erreur on renvoie le tableau vide
+         // on vérifie l'instanciation de $categoryList
         if(is_object($categoryList)){
+            // on récupère les résultats de l'instanciation dans un tableau par un fetchAll
             $getCategoryList=$categoryList->fetchAll(PDO::FETCH_OBJ);
         }
         // on renvoie le résultat
@@ -80,7 +86,7 @@ class categories extends database {
         $queryUpdateCategory = 'UPDATE `gleola1_categories` '
                 . 'SET `nameCategory` = :nameCategory '
                 . 'WHERE `id` = :id';
-        // si il y a une erreur on renvoie le tableau vide
+        // on vérifie l'instanciation de $categoryList
         if (is_object($queryUpdateCategory)) {
             $result = $this->db->prepare($queryUpdateCategory);
             // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this

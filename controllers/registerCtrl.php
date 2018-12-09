@@ -42,9 +42,10 @@ if (isset($_POST['loginVerify'])) {
         // sinon on affiche une erreur
         $errorList['lastname'] = ERROR_LASTNAME;
         }
-    } else {
+    if (empty($_POST['lastname'])){
         // sinon on affiche une erreur de champ vide
         $errorList['lastname'] = ERROR_EMPTY_FIELD;
+    }
     }
 
     if (!empty($_POST['firstname'])) {
@@ -56,23 +57,25 @@ if (isset($_POST['loginVerify'])) {
         // sinon on affiche une erreur
         $errorList['firstname'] = ERROR_FIRSTNAME;
         }
-    } else {
+    if (empty($_POST['firstname'])) {
         // sinon on affiche une erreur de champ vide
         $errorList['firstname'] = ERROR_EMPTY_FIELD;
+    }
     }
     
      if (!empty($_POST['birthdate'])) {
         $birthdate = htmlspecialchars($_POST['birthdate']);
-    } else {
+        if (empty($_POST['birthdate'])) { 
         $errorList['birthdate'] = ERROR_EMPTY_FIELD;
+        }
     }
     
       if (!empty($_POST['address'])) {
         $address = htmlspecialchars($_POST['address']);
-    } else {
+    if (empty($_POST['address'])) {
         $errorList['address'] = ERROR_EMPTY_FIELD;
     }
-    
+      }
       if (!empty($_POST['zipcode'])) {
           // condition de passage à la regex
         if (preg_match($regexZipcode, $_POST['zipcode'])) {
@@ -80,10 +83,10 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['zipcode'] = ERROR_ZIPCODE;
     }
-    
-    } else {
+    if (empty($_POST['zipcode'])) {
       $errorList['zipcode'] = ERROR_EMPTY_FIELD;  
     }
+    } 
     
       if (!empty($_POST['city'])) {
           if (preg_match($regexText, $_POST['city'])) {
@@ -91,9 +94,10 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['city'] = ERROR_CITY;
     }
-      } else {
+      if (empty($_POST['city'])) {
           $errorList['city'] = ERROR_EMPTY_FIELD; 
       }
+      } 
     
       if (!empty($_POST['country'])) {
           if (preg_match($regexText, $_POST['country'])) {
@@ -101,9 +105,10 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['country'] = ERROR_COUNTRY;
     }
-      } else {
+      if (empty($_POST['country'])) {
           $errorList['country'] = ERROR_EMPTY_FIELD; 
       }
+      } 
     
     if (!empty($_POST['mail'])) {
         if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
@@ -111,18 +116,20 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['mail'] = ERROR_MAIL;
     }
-    } else {
+    if (empty($_POST['mail'])) {
         $errorList['mail'] = ERROR_EMPTY_FIELD; 
     }
+    } 
       if (!empty($_POST['phone'])) {
           if(preg_match($regexPhone, $_POST['phone'])) {
         $phone = htmlspecialchars($_POST['phone']);
     } else {
         $errorList['phone'] = ERROR_PHONE;
     }
-    } else {
+    if (empty($_POST['phone'])) {
        $errorList['phone'] = ERROR_EMPTY_FIELD;    
       }
+    } 
     if (!empty($_POST['login'])) {
         if(preg_match($regexLogin, $_POST['login'])) {
     
@@ -131,24 +138,27 @@ if (isset($_POST['loginVerify'])) {
     } else {
         $errorList['login'] = ERROR_LOGIN;
     }
-} else {
+    if (empty($_POST['login'])) {
      $errorList['login'] = ERROR_EMPTY_FIELD; 
+}
 }
     
     if (!empty($_POST['password'])) {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         
-    } else {
+    if (empty($_POST['password'])) {
         $errorList['password'] = ERROR_EMPTY_FIELD;
     }
+    } 
     if (isset($_POST['passwordVerify'])) {
         
         if ($_POST['password'] != $_POST['passwordVerify']) {
             $errorList['passwordVerify'] = ERROR_DIFFERENT_PASSWORD;
         }
-    } else {
+    if (empty($_POST['passwordVerify'])) {
         $errorList['passwordVerify'] = ERROR_EMPTY_FIELD;
     }
+    } 
 
 
 // S'il n'y a pas d'erreur

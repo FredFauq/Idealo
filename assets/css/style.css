@@ -196,7 +196,7 @@ body, .btn {
   .carousel-inner .carousel-item-prev.carousel-item-right {
     position: absolute;
     top: 0;
-    left: +33.33%;
+    left: 0;
     z-index: -1;
     display: block;
     visibility: visible;
@@ -215,7 +215,7 @@ body, .btn {
   }
 }
 
-@media (max-width: 362px) {
+@media (max-width: 446px) {
     h2 {
         font-size: 1.5em;
     }
@@ -224,7 +224,16 @@ body, .btn {
         text-align: left;
     }
     .form-control {
-        font-size: 1em;
+        font-size: .8em;
+    }
+    .custom-file-label {
+        font-size: .6em;
+    }
+    .input-group-text {
+        font-size: .8em;
+    }
+    select {
+       font-size: .8em; 
     }
     label {
         font-size: 1em;
@@ -259,7 +268,7 @@ table{
     border-radius: 15px;
 }
 .card-body .btn:not(.btn-block) {
-    width: 120px;
+    width: 100%;
     margin-bottom: 10px;
 }
 .card-header {
@@ -310,6 +319,7 @@ select {
 }
 .custom-file-label {
     background-color: #E5E0E0;
+    text-align: left;
 }
 .custom-file {
     border: 1px solid black;

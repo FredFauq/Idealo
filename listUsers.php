@@ -102,6 +102,9 @@ include_once 'controllers/listUsersCtrl.php';
             </div>
         </div>
     </div>
+ <!-- debut bouton top page -->
+    <button onclick="topFunction()" id="topBtn" title="topBtn">Top</button>
+    <!-- fin bouton top page -->
 <?php } else { ?>
     <!-- Card accés refusé -->
     <div class="container">
