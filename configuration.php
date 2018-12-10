@@ -9,6 +9,8 @@ define('DBNAME', 'Idealoe');
 include_once 'class/database.php';
 // inclusion du  modelUsers
 include_once 'models/modelUsers.php';
+// inclusion du  modelProducts
+include_once 'models/modelProducts.php';
 // inclusion du  modelCategories
 include_once 'models/modelCategories.php';
 // Ajout du fichier de langue

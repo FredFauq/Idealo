@@ -1,22 +1,13 @@
 <?php
-//on instancie une variable $productsList pour l'objet produits
+// on instancie une variable $product pour l'objet products
 $product = NEW products();
-//on instancie une variable $getProductsList pour la méthode getProductsList
-$getProductsList = $product->getProductsList();
-//on instancie une variable $categoryList pour l'objet categories
-$category = NEW categories();
-//on instancie une variable $getCategoryList pour la méthode getCategoryList
-$getCategoryList = $category->getCategoryList();
-// on initialise les variables
-$labelProduct = '';
-$nameCategory = '';
-$textProduct = '';
-$priceProduct = '';
-$barcodeProduct = '';
-$imgProduct = '';
-$search = '';
-$maxwidth = 800;
-$maxheight = 600;
+// on récupére l'id 
+$product->id = $_GET['id'];
+// on instancie une variable $getProductByID pour la méthode getProductByID
+$getProductByID = $product->getProductByID();
+// on instancie une variable $updateProduct pour la méthode updateProduct
+$updateProduct = $product->updateProduct();
+
 // on déclare les variables de tableau
 $errorList = array();
 $successList = array();
@@ -28,13 +19,10 @@ $regexText = '/^[0-9A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôû
 $regexPrice = '/[0-9]*\.[0-9]{2}/';
 // regex pour le code barre EAN13
 $regexBarcode = '/[0-9]{13}/';
-// regex pour la catègorie
-$regexCategory = '/[0-5]{1}/';
-
 
 //Validation du formulaire
 // quand l'utilisateur sousmet le formulaire
-if(isset($_POST['registerProduct'])) {
+if(isset($_POST['updateProduct'])) {
     // on vérifie que la saisie existe et n'est pas vide
     if (!empty($_POST['labelProduct'])) {
         // on sécurise par htmlspecialchars
@@ -133,19 +121,14 @@ if(isset($_POST['registerProduct'])) {
         // on affiche une erreur si l'enregistrement à échoué
        $errorList['imgProduct'] = REGISTRATION_ERROR;
     }
-    // S'il n'y a pas d'erreur et que le fichier est bien transmis
-    if ((count($errorList) == 0)) {
-        // on instancie la classe products
-        $product = new products();
-        // on hydrate les valeurs
-        $product->labelProduct = $labelProduct;
-        $product->textProduct = $textProduct;
-        $product->priceProduct = $priceProduct;
-        $product->barcodeProduct = $barcodeProduct;
-        $product->imgProduct = $imgProduct;
-        $product->nameCategory = $nameCategory;
-        // on éxécute la méthode addProduct
-        $product->addProduct();
-    }
+    //vérification qu'il n'y a pas d'erreur par la fonction count et que le bouton a été activé
+    if (count($errorList) == 0 && isset($_POST['updateProductBtn'])){
+        $successList['updateProductBtn'] = USER_REGISTRATION_SUCCESS;
+         
+        // si la méthode ne renvoie pas d'instance, afficher le message
+        if (!$product->updateProduct()){
+            $errorList['updateProductBtn'] = USER_REGISTRATION_ERROR;
+        }
+    } 
 }
-
+?>

@@ -1,5 +1,5 @@
 <?php
-// on instancie une variable $patient pour l'objet patients
+// on instancie une variable $patient pour l'objet users
 $users = NEW users();
 // on récupére l'id 
 
@@ -9,9 +9,9 @@ $users->id = $_GET['id'];
     $users->id = $_SESSION['id'];
 }
 
-// on instancie une variable $getPatientProfil pour la méthode getPatientProfil
+// on instancie une variable $getUserProfileByID pour la méthode getUserProfileByID
 $getUserProfileByID = $users->getUserProfileByID();
-// on instancie une variable $changePatientProfil pour la méthode changePatientProfil
+// on instancie une variable $changeUserProfile pour la méthode changeUserProfile
 $changeUserProfile = $users->changeUserProfile();
 
 // regex pour les noms et villes

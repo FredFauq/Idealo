@@ -16,15 +16,15 @@ $getProductsList = $product->getProductsList();
 
 if(isset($_POST['search'])) {
     $product->search = $_POST['search'];
-     //Déclaration de la variable $search qui est égale a $_POST['nameAsked'
+     //Déclaration de la variable $search qui est égale a $_POST['nameAsked']
     $search = htmlspecialchars($_POST['search']);
     //strip_tags — Supprime les balises HTML et PHP d'une chaîne
     $search = strip_tags($search);
     //trim — Supprime les espaces (ou d'autres caractères) en début et fin de chaîne
     $search = trim($search);
-    $productRegex = '/^[a-z _\'\-àâäéèêëîïôöûüùçæ]*$/i';
+    $productRegex = '/^[0-9a-z _\'\-àâäéèêëîïôöûüùçæ]*$/i';
     if (preg_match($productRegex, $search)) {
-            //Éxécution de la méthode searchProduct() de l'instance intégration dans $listPatients
+            //Éxécution de la méthode searchProduct() de l'instance intégration dans $searchProduct
             $getProductList = $product->searchProduct();
     } else {
             $error = 'Recherche invalide';

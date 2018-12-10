@@ -16,6 +16,14 @@ include_once 'header.php';
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item col-md-3">
@@ -26,6 +34,14 @@ include_once 'header.php';
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item col-md-3">
@@ -35,6 +51,14 @@ include_once 'header.php';
                         <h4 class="card-title">Promo 3</h4>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
                     </div>
                 </div>
             </div>
@@ -46,6 +70,14 @@ include_once 'header.php';
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item col-md-3">
@@ -56,17 +88,33 @@ include_once 'header.php';
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item col-md-3">
                 <div class="card text-center">
                     <a href=".modal" id="infoLink" data-toggle="modal" data-target=".modal">
-                    <img class="card-img-top img-fluid" src="assets/img/feuilles-fraiches-d-aloe-vera-800x600.jpg" alt="Card image cap">
+                        <img class="card-img-top img-fluid" src="assets/img/feuilles-fraiches-d-aloe-vera-800x600.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
                         <h4 class="card-title">Promo 6</h4>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
                     </div>
                 </div>
             </div>
@@ -77,6 +125,14 @@ include_once 'header.php';
                         <h4 class="card-title">Promo 3</h4>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="productPrice float-left badge badge-pill badge-info">12€90</span>
+                            <a class="float-right" href="#" class="card-link"><i class="fas fa-cart-plus fa-2x mr-3"></i></a>
+                            <a class="float-right" href="#" class="card-link"> <i class="fa fa-share-alt grey-text mr-3"></i></a>
+                        </div>
+                        <div class="basePrice float-left font-weight-light pl-3">25€80/l</div>
                     </div>
                 </div>
             </div>
@@ -99,7 +155,7 @@ include_once 'header.php';
     <!--Card-->
     <div class="card text-center">
         <a href=".modal" id="infoLink" data-toggle="modal" data-target="#infoModal1">
-        <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-drink-500-ml-fr.jpg" alt="aloe-vera">
+            <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-drink-500-ml-fr.jpg" alt="aloe-vera">
         </a>
         <div class="card-body">
             <h5 class="card-title">Aloé-véra</h5>
@@ -123,7 +179,7 @@ include_once 'header.php';
                         </div>
                         <div class="modal-body">
                             <p>Le jus d’Aloe Vera de Raab possède un taux élevé d’aloverose de 1200 mg par litre (environ 2000 MPS – Multiple Polysaccharides). C’est naturellement un pur jus Bio, qui est obtenu directement par la pression des plantes épluchées à la main, sans filtration ni dilution. Contrôlé par BIO EG-VO 2092/91.
-L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux longues périodes de chaleur et de sècheresse, tout en conservant une certaine fermeté. En effet, les mucopolysaccharides présents dans la plante permettent de stocker l’humidité à l’intérieur et préviennent le dessèchement des tissus. Le jus d’Aloe Vera Bio de Raab est élaboré à partir de feuilles issues de l’agriculture biologique qui sont pelées manuellement. Il n’y a pas de traces de chlorophylle dans le jus fini, grâce à l’utilisation du gel qui est exclusivement extrait de plantes fraîches. Raab exige de la part de ses ournisseurs mexicains de renoncer catégoriquement à toute utilisation de pesticides et d’engrais artificiels. Raab Vitalfood est membre du « International Aloe Science Council » (IASC).</p>
+                                L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux longues périodes de chaleur et de sècheresse, tout en conservant une certaine fermeté. En effet, les mucopolysaccharides présents dans la plante permettent de stocker l’humidité à l’intérieur et préviennent le dessèchement des tissus. Le jus d’Aloe Vera Bio de Raab est élaboré à partir de feuilles issues de l’agriculture biologique qui sont pelées manuellement. Il n’y a pas de traces de chlorophylle dans le jus fini, grâce à l’utilisation du gel qui est exclusivement extrait de plantes fraîches. Raab exige de la part de ses ournisseurs mexicains de renoncer catégoriquement à toute utilisation de pesticides et d’engrais artificiels. Raab Vitalfood est membre du « International Aloe Science Council » (IASC).</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -147,7 +203,7 @@ L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux 
     <!--Card-->
     <div class="card text-center">
         <a href=".modal" id="infoLink" data-toggle="modal" data-target="#infoModal2">
-        <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-bio-1000-ml-.jpg" alt="aloe-vera">
+            <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-bio-1000-ml-.jpg" alt="aloe-vera">
         </a>
         <div class="card-body">
             <h5 class="card-title">Aloé-véra</h5>
@@ -157,7 +213,7 @@ L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux 
             <p class="card-text">(*issu de l’agriculture biologique) </p>
         </div>
         <div class="card-body">
-           <!-- Modal --> 
+            <!-- Modal --> 
             <a href=".modal" id="infoLink" data-toggle="modal" data-target="#infoModal2"><i class="fas fa-info-circle fa-2x"></i></a>
 
             <div class="modal" id="infoModal2" tabindex="-1" role="dialog">
@@ -170,7 +226,8 @@ L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux 
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Texte de infoModal </p>
+                            <p>Le jus d’Aloe Vera de Raab possède un taux élevé d’aloverose de 1200 mg par litre (environ 2000 MPS – Multiple Polysaccharides). C’est naturellement un pur jus Bio, qui est obtenu directement par la pression des plantes épluchées à la main, sans filtration ni dilution. Contrôlé par BIO EG-VO 2092/91.
+                                L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux longues périodes de chaleur et de sècheresse, tout en conservant une certaine fermeté. En effet, les mucopolysaccharides présents dans la plante permettent de stocker l’humidité à l’intérieur et préviennent le dessèchement des tissus. Le jus d’Aloe Vera Bio de Raab est élaboré à partir de feuilles issues de l’agriculture biologique qui sont pelées manuellement. Il n’y a pas de traces de chlorophylle dans le jus fini, grâce à l’utilisation du gel qui est exclusivement extrait de plantes fraîches. Raab exige de la part de ses ournisseurs mexicains de renoncer catégoriquement à toute utilisation de pesticides et d’engrais artificiels. Raab Vitalfood est membre du « International Aloe Science Council » (IASC).</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -194,7 +251,7 @@ L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux 
     <!--Card-->
     <div class="card text-center">
         <a href=".modal" id="infoLink" data-toggle="modal" data-target=".modal">
-        <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-drink-500-ml-fr.jpg" alt="aloe-vera">
+            <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-drink-500-ml-fr.jpg" alt="aloe-vera">
         </a>
         <div class="card-body">
             <h5 class="card-title">Aloé-véra</h5>
@@ -242,7 +299,7 @@ L’Aloe Vera est une plante qui a la capacité exceptionnelle de résister aux 
     <!--Card-->
     <div class="card text-center">
         <a href=".modal" id="infoLink" data-toggle="modal" data-target=".modal">
-        <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-bio-1000-ml-.jpg" alt="aloe-vera">
+            <img class="card-img-top img-responsive" src="/assets/img/aloe-vera-bio-1000-ml-.jpg" alt="aloe-vera">
         </a>
         <div class="card-body">
             <h5 class="card-title">Aloé-véra</h5>

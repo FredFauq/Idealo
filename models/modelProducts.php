@@ -10,6 +10,7 @@ class products extends database {
     public $priceProduct = '';
     public $barcodeProduct = '';
     public $imgProduct = '';
+    public $nameCategory = '';
     public $search = '';
     // on crée une methode magique __construct()
     public function __construct() {
@@ -43,8 +44,8 @@ class products extends database {
      */
     public function addProduct() {
         // requête d'insertion des valeurs d'un produit
-        $query = 'INSERT INTO `gleola1_products` (`labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`) '
-                . 'VALUES (:labelProduct, :textProduct, :priceProduct, :barcodeProduct, :imgProduct)';
+        $query = 'INSERT INTO `gleola1_products` (`labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`, `nameCategory`) '
+                . 'VALUES (:labelProduct, :textProduct, :priceProduct, :barcodeProduct, :imgProduct, :nameCategory)';
         $result = $this->db->prepare($query);
         // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $result->bindValue(':labelProduct', $this->labelProduct, PDO::PARAM_STR);
@@ -52,6 +53,7 @@ class products extends database {
         $result->bindValue(':priceProduct', $this->priceProduct, PDO::PARAM_STR);
         $result->bindValue(':barcodeProduct', $this->barcodeProduct, PDO::PARAM_STR);
         $result->bindValue(':imgProduct', $this->imgProduct, PDO::PARAM_STR);
+        $result->bindValue(':nameCategory', $this->nameCategory, PDO::PARAM_STR);
         // On exécute la requête en utilisant la méthode execute() via un return
         return $result->execute();
     }
@@ -77,7 +79,7 @@ class products extends database {
     public function updateProduct() {
         // Préparation de la requête d'update d'un produit dans la BDD.
         $queryUpdateProduct = 'UPDATE `gleola1_products` '
-                . 'SET `labelProduct` = :labelProduct, `textProduct` = :textProduct, `priceProduct` = :priceProduct, `barcodeProduct` = :barcodeProduct '
+                . 'SET `labelProduct` = :labelProduct, `textProduct` = :textProduct, `priceProduct` = :priceProduct, `barcodeProduct` = :barcodeProduct, `nameCategory` = :nameCategory '
                 . 'WHERE `id` = :id';
         // on vérifie l'instanciation de $queryUpdateProduct
         if (is_object($queryUpdateProduct)) {
@@ -88,6 +90,7 @@ class products extends database {
             $result->bindValue(':priceProduct', $this->priceProduct, PDO::PARAM_STR);
             $result->bindValue(':barcodeProduct', $this->barcodeProduct, PDO::PARAM_STR);
             $result->bindValue(':imgProduct', $this->imgProduct, PDO::PARAM_STR);
+            $result->bindValue(':nameCategory', $this->nameCategory, PDO::PARAM_STR);
             // On exécute la requête.
             return $result->execute();
         } else {
@@ -120,7 +123,7 @@ class products extends database {
     public function getProductsList() {
         // on declare un tableau vide
         $productsList = array();
-        $query = 'SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct` FROM `gleola1_products` LIMIT 5';
+        $query = 'SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`, `nameCategory` FROM `gleola1_products` LIMIT 5';
                $productsList = $this->db->query($query);
          // on vérifie l'instanciation de $getProductsList
         if(is_object($productsList)) {
@@ -155,7 +158,27 @@ class products extends database {
         }
         return $searchProduct;
     }
-
+/**
+     * Méthode pour recupérer un produit par son id
+     * @return type
+     */
+    public function getProductByID() {
+                $query = 'SELECT `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`, `nameCategory` FROM `gleola1_products` WHERE `id` = :id';
+             // on attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
+           $productByID=$this->db->prepare($query);
+         $productByID->bindValue(':id', $this->id, PDO::PARAM_INT);
+           // on utilise la méthode execute() via un return
+       $productByID->execute();
+            // on vérifie l'instanciation de $userProfile
+            if (is_object($productByID)){
+                /* On crée la variable $getUserProfilByID qui va nous permettre de retourner le resultat 
+             * La fonction fetch permet d'afficher la ligne de la requète que je souhaite récupérer
+             */
+            $getProductByID = $productByID->fetch(PDO::FETCH_OBJ);
+            }
+        // on renvoie le résultat   
+        return $getProductByID;
+    }
     /**
      * Méthode permettant de rechercher des produits par 5
      * @return boolean
@@ -164,7 +187,7 @@ class products extends database {
         //Déclaration du tableau vide
         $result = array();
         // Préparation de la requête pour obtenir la liste de produit par 5 dans la BDD.
-        $queryRresult = $this->db->prepare('SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct` '
+        $queryRresult = $this->db->prepare('SELECT `id`, `labelProduct`, `textProduct`, `priceProduct`, `barcodeProduct`, `imgProduct`, `nameCategory` '
                 . 'FROM `gleola1_products` '
                 . 'LIMIT :limit OFFSET :offset');
         $queryRresult->bindvalue(':limit', $limit, PDO::PARAM_INT);

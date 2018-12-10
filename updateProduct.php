@@ -2,19 +2,20 @@
 // inclusion du header
 include_once 'header.php';
 // inclusion du contrôleur
-include_once 'controllers/addProductCtrl.php';
-?>
+include_once 'controllers/updateProductCtrl.php';
+?> 
+
 <!-- formulaire d'ajout produit début -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <!--  contenu card -->
             <!-- formulaire d'ajout produit avec format d'envoi de donnée enctype -->
-            <form action="addProduct.php" method="POST" enctype="multipart/form-data">
+            <form action="updateProduct.php" method="POST" enctype="multipart/form-data">
                 <div class="card text-center">
                     <div class="card-header">
                         <?php if (isset($_SESSION['isConnect']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) { ?>
-                            <h2>Ajout d'un produit</h2>
+                            <h2>Modification d'un produit</h2>
                             <div id="status">
                                 ADMINISTRATION
                             </div>
@@ -23,7 +24,7 @@ include_once 'controllers/addProductCtrl.php';
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                                    <input type="text" name="labelProduct" class="form-control" id="labelProduct" placeholder="<?= REGISTER_LABEL_PRODUCT ?>" required/>
+                                    <input type="text" name="labelProduct" class="form-control" id="labelProduct" value="<?= $getProductByID->labelProduct ?>" required/>
                                 </div>
                                     <?php if (!empty($errorList['labelProduct'])) { ?>
                                         <div class="text-danger"><?= $errorList['labelProduct']; ?></div>
@@ -33,7 +34,7 @@ include_once 'controllers/addProductCtrl.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
                                     <select type="text" name="nameCategory" id="nameCategory" required >
-                                        <option selected disabled>Selectionnez une catégorie</option> 
+                                        <option selected disabled><?= $getProductByID->nameCategory ?></option> 
                                         <?php foreach ($getCategoryList AS $categoryList) { ?>
                                             <option value="<?= $categoryList->id ?>"><?= $categoryList->nameCategory ?></option>
                                         <?php } ?>
@@ -46,7 +47,7 @@ include_once 'controllers/addProductCtrl.php';
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="far fa-file-alt"></i></span>
-                                    <textarea class="form-control" id="textProduct" name="textProduct" rows = "6"><?= REGISTER_TEXT_PRODUCT ?></textarea>
+                                    <textarea class="form-control" id="textProduct" name="textProduct" rows = "6" ><?= $getProductByID->textProduct ?></textarea>
                                 </div>
                                     <?php if (!empty($errorList['textProduct'])) { ?>
                                         <div class="text-danger"><?= $errorList['textProduct']; ?></div>
@@ -55,7 +56,7 @@ include_once 'controllers/addProductCtrl.php';
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                                    <input type="text" name="priceProduct" class="form-control" id="priceProduct"  placeholder="<?= REGISTER_PRICE_PRODUCT ?>"required/>
+                                    <input type="text" name="priceProduct" class="form-control" id="priceProduct"  value="<?= $getProductByID->priceProduct ?>" required/>
                                 </div>
                                     <?php if (!empty($errorList['priceProduct'])) { ?>
                                         <div class="text-danger"><?= $errorList['priceProduct']; ?></div>
@@ -64,7 +65,7 @@ include_once 'controllers/addProductCtrl.php';
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-barcode"></i></span>
-                                    <input type="text" name="barcodeProduct" class="form-control" id="barcodeProduct" placeholder="<?= REGISTER_BARCODE_PRODUCT ?>" required/>
+                                    <input type="text" name="barcodeProduct" class="form-control" id="barcodeProduct" value="<?= $getProductByID->barcodeProduct ?>" required/>
                                 </div>
                                     <?php if (!empty($errorList['barcodeProduct'])) { ?>
                                         <div class="text-danger"><?= $errorList['barcodeProduct']; ?></div>
@@ -89,10 +90,10 @@ include_once 'controllers/addProductCtrl.php';
                             </div>
                             <div class="card-footer">
                                 <div class="form-group">
-                                    <input class="btn btn-success" type="submit" name="registerProduct" id="register" value="<?= REGISTER_SUBMIT ?>"/>
-                                    <?php  if (count($errorList) == 0 && !empty($_POST['registerProuct'])) { ?> <p class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></p>
+                                    <input class="btn btn-success" type="submit" name="updateProductBtn" id="register" value="<?= REGISTER_SUBMIT ?>"/>
+                                    <?php  if (count($errorList) == 0 && !empty($_POST['updateProduct'])) { ?> <p class="alert alert-success"><?= USER_REGISTRATION_SUCCESS ?></p>
             <?php 
-             } if (count($errorList) != 0 && !empty($_POST['registerProuct'])) { 
+             } if (count($errorList) != 0 && !empty($_POST['updateProductBtn'])) { 
               ?>  
             <p class="text-danger"><?= USER_REGISTRATION_ERROR ?></p>
             <?php
@@ -130,6 +131,4 @@ include_once 'controllers/addProductCtrl.php';
 <?php } ?>
 <!-- Card accés refusé fin -->
 <!-- inclusion du footer -->
-<?php
-include_once 'footer.php';
-?>
+<?php include_once 'footer.php'; ?>

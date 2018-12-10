@@ -39,11 +39,11 @@ include_once 'controllers/listProductsCtrl.php';
                                             <tr>
                                                 <th scope="col">Id</th>
                                                 <th scope="col">Produit</th>
-                                                <th scope="col">Catégories</th>
                                                 <th scope="col">Description</th>
                                                 <th scope="col">Prix</th>
                                                 <th scope="col">Code Barre</th>
                                                 <th scope="col">Image</th>
+                                                <th scope="col">Catégories</th>
                                                 <th scope="col">Modif.</th>
                                                 <th scope="col">Suppr.</th>
                                             </tr>
@@ -53,11 +53,11 @@ include_once 'controllers/listProductsCtrl.php';
                                                 <tr>
                                                     <td><?= $product->id ?></td>
                                                     <td><?= $product->labelProduct ?></td>
-                                                    <td><?= $product->nameCategory ?></td>
                                                     <td><?= $product->textProduct ?></td>
                                                     <td><?= $product->priceProduct ?></td>
                                                     <td><?= $product->barcodeProduct ?></td>
                                                     <td><?= $product->imgProduct ?></td>
+                                                    <td><?= $product->nameCategory ?></td>
                                                     <td><a href="updateProduct.php?id=<?= $product->id ?>"><img src="/assets/img/icons/icons8-ajouter-une-étiquette-24.png"></i></a></td>
                                                     <td><form method = "POST" action="?id=<?= $product->id ?>">
                                                             <button type="submit" value="" name="submitDelete" class="btn btn-danger"><i class="far fa-trash-alt"></i>
